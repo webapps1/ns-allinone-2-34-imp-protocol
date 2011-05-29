@@ -53,18 +53,18 @@ PERL	= /usr/bin/perl
 # for diffusion
 #DIFF_INCLUDES = "./diffusion3/main ./diffusion3/lib ./diffusion3/nr ./diffusion3/ns"
 
-CCOPT	= -g -Wall -Wno-write-strings -Wno-parentheses 
+CCOPT	=  -Wall -Wno-write-strings 
 STATIC	= 
 #LDFLAGS	= $(STATIC)
 LDFLAGS	=  -Wl,-export-dynamic 
 LDOUT	= -o $(BLANK)
 
-DEFINE	= -DTCP_DELAY_BIND_ALL -DNO_TK -DTCLCL_CLASSINSTVAR  -fsigned-char -fno-inline -DLINUX_TCP_HEADER -DUSE_SHM -DHAVE_LIBTCLCL -DHAVE_TCLCL_H -DHAVE_LIBOTCL1_13 -DHAVE_OTCL_H -DHAVE_LIBTK8_4 -DHAVE_TK_H -DHAVE_LIBTCL8_4 -DHAVE_TCLINT_H -DHAVE_TCL_H  -DHAVE_CONFIG_H -DNS_DIFFUSION -DSMAC_NO_SYNC -DCPP_NAMESPACE=std -DUSE_SINGLE_ADDRESS_SPACE -Drng_test
+DEFINE	= -DTCP_DELAY_BIND_ALL -DNO_TK -DTCLCL_CLASSINSTVAR  -DNDEBUG -DLINUX_TCP_HEADER -DUSE_SHM -DHAVE_LIBTCLCL -DHAVE_TCLCL_H -DHAVE_LIBOTCL1_13 -DHAVE_OTCL_H -DHAVE_LIBTK8_4 -DHAVE_TK_H -DHAVE_LIBTCL8_4 -DHAVE_TCLINT_H -DHAVE_TCL_H  -DHAVE_CONFIG_H -DNS_DIFFUSION -DSMAC_NO_SYNC -DCPP_NAMESPACE=std -DUSE_SINGLE_ADDRESS_SPACE -Drng_test
 
 INCLUDES = \
 	-I.  \
 	-I. \
-	-I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/usr/include/pcap \
+	-I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl-1.13 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/usr/include/pcap \
 	-I./tcp -I./sctp -I./common -I./link -I./queue \
 	-I./adc -I./apps -I./mac -I./mobile -I./trace \
 	-I./routing -I./tools -I./classifier -I./mcast \
@@ -76,7 +76,7 @@ INCLUDES = \
 
 
 LIB	= \
-	-L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -ltclcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl -lotcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltk8.4 -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltcl8.4 \
+	-L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -ltclcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl-1.13 -lotcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltk8.4 -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltcl8.4 \
 	-lXext -lX11 \
 	 -lnsl -ldl \
 	-lm -lm 

@@ -27,8 +27,8 @@ BINDEST = /usr/local/bin
 CC = g++
 MKDEP	= ../../../conf/mkdep
 
-INCLUDE = -I. -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/usr/include/pcap
-CFLAGS = -g -Wall -Wno-write-strings -Wno-parentheses -DCPP_NAMESPACE=std
+INCLUDE = -I. -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl-1.13 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/usr/include/pcap
+CFLAGS =  -Wall -Wno-write-strings -DCPP_NAMESPACE=std
 LDFLAGS = 
 LIBS = -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltcl8.4  -lnsl -ldl -lm 
 INSTALL = /usr/bin/install -c
