@@ -197,6 +197,12 @@ Node/MobileNode instproc add-target { agent port } {
 	if {$aodvonly != -1 } {
 		$agent if-queue [$self set ifq_(0)]   ;# ifq between LL and MAC
 	}
+
+	# Special processing for WFRP
+	set wfrponly [string first "WFRP" [$agent info class]]
+	if {$wfrponly != -1 } {
+		$agent if-queue [$self set ifq_(0)]   ;# ifq between LL and MAC
+	}
 	
 	#<zheng: add>
 	# Special processing for ZBR

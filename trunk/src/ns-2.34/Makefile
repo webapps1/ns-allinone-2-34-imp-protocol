@@ -263,6 +263,7 @@ OBJ_CC = \
 	satellite/sat-hdlc.o \
 	dsdv/dsdv.o dsdv/rtable.o queue/rtqueue.o \
 	routing/rttable.o \
+	wfrp/wfrp.o \
 	imep/imep.o imep/dest_queue.o imep/imep_api.o \
 	imep/imep_rt.o imep/rxmit_queue.o imep/imep_timers.o \
 	imep/imep_util.o imep/imep_io.o \
