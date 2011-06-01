@@ -630,6 +630,9 @@ Simulator instproc create-wireless-node args {
 		    AODV {
 			    set ragent [$self create-aodv-agent $node]
 		    }
+		    WFRP {
+                            set ragent [$self create-wfrp-agent $node]
+                    }
 		    AOMDV {
 			    set ragent [$self create-aomdv-agent $node]
 		    }
@@ -856,6 +859,14 @@ Simulator instproc create-aodv-agent { node } {
 # AOMDV patch
 Simulator instproc create-aomdv-agent { node } {
 	set ragent [new Agent/AOMDV [$node node-addr]]
+	$self at 0.0 "$ragent start"
+	$node set ragent_ $ragent
+	return $ragent
+}
+
+Simulator instproc create-wfrp-agent { node } {
+	#  Create WFRP routing agent
+	set ragent [new Agent/WFRP [$node node-addr]]
 	$self at 0.0 "$ragent start"
 	$node set ragent_ $ragent
 	return $ragent

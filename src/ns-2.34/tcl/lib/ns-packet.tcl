@@ -169,6 +169,7 @@ foreach prot {
 	TORA 	# routing protocol for ad-hoc networks
 	# AOMDV patch
 	AOMDV
+	WFRP
 # Other:
 	Encap 	# common/encap.cc
         IPinIP 	# IP encapsulation 

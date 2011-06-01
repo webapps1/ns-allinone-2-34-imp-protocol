@@ -71,7 +71,9 @@ static LIST_HEAD(_dummy_MobileNodeList, MobileNode) nodehead = { 0 };
 static class MobileNodeClass : public TclClass {
 public:
         MobileNodeClass() : TclClass("Node/MobileNode") {}
-        TclObject* create(int, const char*const*) {
+        TclObject* create(int a, const char*const* b) {
+        		printf("Inicializando MobileNodeClass - mobilenode.cc\n");
+        		printf("%d \n", a);
                 return (new MobileNode);
         }
 } class_mobilenode;
@@ -88,10 +90,10 @@ PositionHandler::handle(Event*)
 {
 	Scheduler& s = Scheduler::instance();
 
-#if 0
+
 	fprintf(stderr, "*** POSITION HANDLER for node %d (time: %f) ***\n",
 		node->address(), s.clock());
-#endif
+
 	/*
 	 * Update current location
 	 */
@@ -100,10 +102,10 @@ PositionHandler::handle(Event*)
 	/*
 	 * Choose a new random speed and direction
 	 */
-#ifdef DEBUG
+
         fprintf(stderr, "%d - %s: calling random_destination()\n",
                 node->address_, __PRETTY_FUNCTION__);
-#endif
+
 	node->random_destination();
 
 	s.schedule(&node->pos_handle_, &node->pos_intr_,
@@ -118,6 +120,9 @@ PositionHandler::handle(Event*)
 MobileNode::MobileNode(void) : 
 	pos_handle_(this)
 {
+
+	printf("Método MobileNode - mobilenode.cc\n");
+
 	X_ = Y_ = Z_ = speed_ = 0.0;
 	dX_ = dY_ = dZ_ = 0.0;
 	destX_ = destY_ = 0.0;
@@ -366,6 +371,7 @@ MobileNode::log_energy(int flag)
 void
 MobileNode::bound_position()
 {
+	printf("aqui\n");
 	double minX;
 	double maxX;
 	double minY;
@@ -406,6 +412,7 @@ MobileNode::bound_position()
 int
 MobileNode::set_destination(double x, double y, double s)
 {
+	printf("set destination - mobilenode.cc\n");
 	assert(initialized());
 
 	if(x >= T_->upperX() || x <= T_->lowerX())

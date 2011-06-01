@@ -270,6 +270,8 @@ char *Address::print_portaddr(int address)
 int Address::str2addr(const char *str) const
 {
 	
+	//printf("Em str2addr recebi como parâmetro: %s - address.cc\n", str);
+
 	if (levels_ < 2) {
 		int tmp = atoi(str);		
 		if (tmp < 0)     

@@ -40,6 +40,7 @@
 #include <string.h>
 #include <assert.h>
 
+
 #include "config.h"
 #include "scheduler.h"
 #include "object.h"
@@ -180,10 +181,12 @@ static const packet_t PT_HDLC = 59;
 static const packet_t PT_BLTRACE = 60;
 
 	// AOMDV packet
-static const packet_t PT_AOMDV = 61;
+static const packet_t PT_WFRP = 61;
+
+static const packet_t PT_AOMDV = 62;
 
         // insert new packet types here
-static packet_t       PT_NTYPE = 62; // This MUST be the LAST one
+static packet_t       PT_NTYPE = 63; // This MUST be the LAST one
 
 enum packetClass
 {
@@ -248,7 +251,8 @@ public:
 		if (type == PT_DSR || 
 		    type == PT_MESSAGE || 
 		    type == PT_TORA || 
-		    type == PT_AODV)
+		    type == PT_AODV || 
+                    type == PT_WFRP)
 			return ROUTING;		
 		if (type == PT_TCP || 
 		    type == PT_TELNET || 
@@ -382,6 +386,8 @@ public:
 		
 		// AOMDV patch
 		name_[PT_AOMDV]= "AOMDV";
+
+		name_[PT_WFRP] = "WFRP";
 
 		name_[PT_NTYPE]= "undefined";
 	}
