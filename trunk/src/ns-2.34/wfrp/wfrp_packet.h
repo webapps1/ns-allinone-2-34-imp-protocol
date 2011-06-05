@@ -34,14 +34,12 @@
 #define WFRP_BEACON	0x01
 #define WFRP_ERROR	0x02
 
-
 // ======================================================================
 // Direct access to packet headers
 // ======================================================================
-
-#define HDR_WFRP(p)		((struct hdr_wfrp*)hdr_wfrp::access(p))
-#define HDR_WFRP_BEACON(p)	((struct hdr_wfrp_beacon*)hdr_wfrp::access(p))
-#define HDR_WFRP_ERROR(p)	((struct hdr_wfrp_error*)hdr_wfrp::access(p))
+#define HDR_WFRP(p)		((struct hdr_wfrp*)hdr_wfrp::access_pa(p))
+#define HDR_WFRP_BEACON(p)	((struct hdr_wfrp_beacon*)hdr_wfrp::access_pa(p))
+#define HDR_WFRP_ERROR(p)	((struct hdr_wfrp_error*)hdr_wfrp::access_pa(p))
 
 
 // ======================================================================
@@ -49,15 +47,18 @@
 // ======================================================================
 
 struct hdr_wfrp {
-	u_int8_t	pkt_type;
+	u_int8_t pkt_type;
 
 	// header access
 	static int offset_;
-	inline static int& offset() { return offset_;}
-	inline static hdr_wfrp* access(const Packet *p) {
-		return (hdr_wfrp*) p->access(offset_);
+
+	inline static int& offset() {
+		return offset_;
 	}
 
+	inline static hdr_wfrp* access_pa(const Packet *p) {
+		return (hdr_wfrp*) p->access(offset_);
+	}
 };
 
 // ======================================================================
