@@ -267,6 +267,7 @@ OBJ_CC = \
 	imep/imep_rt.o imep/rxmit_queue.o imep/imep_timers.o \
 	imep/imep_util.o imep/imep_io.o \
 	tora/tora.o tora/tora_api.o tora/tora_dest.o \
+	wfrp/wfrp.o \
 	tora/tora_io.o tora/tora_logs.o tora/tora_neighbor.o \
 	dsr/dsragent.o dsr/hdr_sr.o dsr/mobicache.o dsr/path.o \
 	dsr/requesttable.o dsr/routecache.o dsr/add_sr.o \

@@ -46,7 +46,7 @@
 
 /* 64-bits */
 #define HAVE_INT64 1
-#define SIZEOF_LONG 4
+#define SIZEOF_LONG 8
 /* #undef int64_t */
 
 /* socklen_t (for nse) */

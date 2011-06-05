@@ -87,7 +87,7 @@ WFRP::command(int argc, const char*const* argv) {
 	printf("\n");
 
 	if(argc == 2) {
-	Tcl& tcl = Tcl::instance();
+		Tcl& tcl = Tcl::instance();
     
 		if(strncasecmp(argv[1], "id", 2) == 0) {
 			tcl.resultf("%d", index);

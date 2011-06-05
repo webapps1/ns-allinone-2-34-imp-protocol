@@ -48,7 +48,7 @@
 #include <mac-802_11.h>
 #include <smac.h>
 #include <address.h>
-#include <wfrp/wfrp_packet.h>
+
 #include <tora/tora_packet.h> //TORA
 #include <imep/imep_spec.h>         // IMEP
 #include <aodv/aodv_packet.h> //AODV
@@ -62,6 +62,9 @@
 #include "wpan/p802_15_4trace.h"
 #include "wpan/p802_15_4nam.h"
 //</zheng: add for 802.15.4>
+
+// wrfp
+#include "../wfrp/wfrp_packet.h"
 
 #include "diffusion/diff_header.h" // DIFFUSION -- Chalermek
 
