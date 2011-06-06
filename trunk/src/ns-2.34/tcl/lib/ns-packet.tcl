@@ -170,6 +170,7 @@ foreach prot {
 	# AOMDV patch
 	AOMDV
 	WFRP
+	XFXVanets
 # Other:
 	Encap 	# common/encap.cc
         IPinIP 	# IP encapsulation 

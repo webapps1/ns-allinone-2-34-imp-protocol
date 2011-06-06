@@ -633,6 +633,9 @@ Simulator instproc create-wireless-node args {
 		    WFRP {
                             set ragent [$self create-wfrp-agent $node]
                     }
+                    XFXVanets {
+                           set ragent [$self create-xfxvanets-agent $node]
+		    }
 		    AOMDV {
 			    set ragent [$self create-aomdv-agent $node]
 		    }
@@ -845,6 +848,14 @@ Simulator instproc create-manual-rtg-agent { node } {
 	$node set ragent_ $ragent
 	$node attach $ragent [Node set rtagent_port_]
 	
+	return $ragent
+}
+
+Simulator instproc create-xfxvanets-agent { node } {
+	#  Create xfxvanets routing agent
+	set ragent [new Agent/XFXVanets [$node node-addr]]
+	$self at 0.0 "$ragent start"
+	$node set ragent_ $ragent
 	return $ragent
 }
 

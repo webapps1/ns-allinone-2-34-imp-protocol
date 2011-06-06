@@ -38,6 +38,9 @@ PATH: /sbin
 PATH: /bin
 PATH: /usr/games
 PATH: /usr/lib64/jvm/java-6-sun/bin
+PATH: /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/bin
+PATH: /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tcl8.4.18/unix
+PATH: /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tk8.4.18/unix
 
 
 ## ----------- ##
@@ -780,7 +783,7 @@ configure:9201: $? = 0
 configure:9223: result: yes
 configure:9138: checking for fesetprecision
 configure:9194: gcc -o conftest -g -O2   conftest.c -lm  >&5
-/tmp/ccTasEE2.o: In function `main':
+/tmp/cc9y2wwC.o: In function `main':
 /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/ns-2.34/conftest.c:82: undefined reference to `fesetprecision'
 collect2: ld returned 1 exit status
 configure:9201: $? = 1
@@ -1839,7 +1842,7 @@ configure:12023: $? = 0
 configure:12033: result: found
 configure:12053: checking for addr2ascii
 configure:12109: gcc -o conftest -g -O2   -Wl,-export-dynamic conftest.c -lm  >&5
-/tmp/ccXkYg8S.o: In function `main':
+/tmp/ccN4MmYw.o: In function `main':
 /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/ns-2.34/conftest.c:93: undefined reference to `addr2ascii'
 collect2: ld returned 1 exit status
 configure:12116: $? = 1

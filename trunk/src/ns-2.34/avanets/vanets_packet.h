@@ -15,17 +15,21 @@
 /**
  * Estrutura com os pacotes utilizados no hello mensagem
  */
-typedef struct packet_hello_message {
-	u_int64_t id_vehicle; /* id do carro*/
+typedef struct{
+	int64_t id_vehicle; /* id do carro*/
 	vanets_queue path; /* conjunto de arestas  (x, y) */
+
+	inline static int size(){
+		return 0;
+	}
 } packet_hello_message;
 
 /**
  * Estrutura com uma determinada mensagem
  */
 typedef struct {
-	u_int64_t id_msg; /** id da mensagem */
-	u_int64_t destination; /* destino da mensagem */
+	int64_t id_msg; /** id da mensagem */
+	int64_t destination; /* destino da mensagem */
 	u_int16_t ttl /* time to live, inicializado com 30 */;
 
 	string to_string(){
@@ -33,13 +37,17 @@ typedef struct {
 		out << "Id: " << id_msg << "; Destination: " << destination << "; Ttl: " << ttl;
 		return out.str();
 	}
+
+	inline static int size(){
+		return 0;
+	}
 } packet_general_message;
 
 /**
  * Estrutura com para a tabela "neighbor vehicle"
  */
 typedef struct {
-	u_int64_t id_vehicle;
+	int64_t id_vehicle;
 	vanets_queue path;
 	u_int16_t ttl;
 

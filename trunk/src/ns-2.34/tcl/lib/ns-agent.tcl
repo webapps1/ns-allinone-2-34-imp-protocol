@@ -185,7 +185,6 @@ Agent/TORA set sport_	0
 Agent/TORA set dport_	0
 
 Agent/AODV instproc init args {
-
          $self next $args
 }
 
@@ -198,11 +197,17 @@ Agent/AOMDV set dport_   0
 Agent/AOMDV set aomdv_prim_alt_path_len_diff_ 1
 Agent/AOMDV set aomdv_max_paths_ 3
 
+#
 Agent/WFRP instproc init args {
 	$self next $args
 }
-	 
 Agent/WFRP set sport_   0
 Agent/WFRP set dport_   0
 
+Agent/XFXVanets instproc init args {
+	$self next $args
+}
+	 
+Agent/XFXVanets set sport_   0
+Agent/XFXVanets set dport_   0
 
