@@ -110,33 +110,53 @@ class MobileNode;
 #endif
 class MobileNode;
 
-class PositionHandler : public Handler {
+class PositionHandler: public Handler {
 public:
-	PositionHandler(MobileNode* n) : node(n) {}
+	PositionHandler(MobileNode* n) :
+		node(n) {
+	}
 	void handle(Event*);
 private:
 	MobileNode *node;
 };
 
-class MobileNode : public Node 
-{
+/*====================================================================================
+ * Representa cada nodo da rede
+ *====================================================================================*/
+class MobileNode: public Node {
 	friend class PositionHandler;
 public:
 	MobileNode();
 	virtual int command(int argc, const char*const* argv);
 
-	double	distance(MobileNode*);
-	double	propdelay(MobileNode*);
-	void	start(void);
-        inline void getLoc(double *x, double *y, double *z) {
-		update_position();  *x = X_; *y = Y_; *z = Z_;
+	double distance(MobileNode*);
+	double propdelay(MobileNode*);
+	void start(void);
+
+	inline void getLoc(double *x, double *y, double *z) {
+		update_position();
+		*x = X_;
+		*y = Y_;
+		*z = Z_;
 	}
-        inline void getVelo(double *dx, double *dy, double *dz) {
-		*dx = dX_ * speed_; *dy = dY_ * speed_; *dz = 0.0;
+
+	inline void getVelo(double *dx, double *dy, double *dz) {
+		*dx = dX_ * speed_;
+		*dy = dY_ * speed_;
+		*dz = 0.0;
 	}
-	inline MobileNode* nextnode() { return link_.le_next; }
-	inline int base_stn() { return base_stn_;}
-	inline void set_base_stn(int addr) { base_stn_ = addr; }
+
+	inline MobileNode* nextnode() {
+		return link_.le_next;
+	}
+
+	inline int base_stn() {
+		return base_stn_;
+	}
+
+	inline void set_base_stn(int addr) {
+		base_stn_ = addr;
+	}
 
 	void dump(void);
 
@@ -163,66 +183,66 @@ public:
 	MobileNode* nextX_;
 	MobileNode* prevX_;
 	
+
 protected:
 	/*
 	 * Last time the position of this node was updated.
 	 */
 	double position_update_time_;
-        double position_update_interval_;
+	double position_update_interval_;
 
 	/*
-         *  The following indicate the (x,y,z) position of the node on
-         *  the "terrain" of the simulation.
-         */
+	 *  The following indicate the (x,y,z) position of the node on
+	 *  the "terrain" of the simulation.
+	 */
 	double X_;
 	double Y_;
 	double Z_;
-	double speed_;	// meters per second
+	double speed_; // meters per second
+	double NOVO_;
 
 	/*
-         *  The following is a unit vector that specifies the
-         *  direction of the mobile node.  It is used to update
-         *  position
-         */
+	 *  The following is a unit vector that specifies the
+	 *  direction of the mobile node.  It is used to update
+	 *  position
+	 */
 	double dX_;
 	double dY_;
 	double dZ_;
 
-        /* where are we going? */
+	/* where are we going? */
 	double destX_;
 	double destY_;
 
 	/*
 	 * for gridkeeper use only
- 	 */
-	MobileNode*	next_;
-	double          radius_;
+	 */
+	MobileNode* next_;
+	double radius_;
 
 	// Used to generate position updates
 	PositionHandler pos_handle_;
 	Event pos_intr_;
 
-	void	log_movement();
-	void	random_direction();
-	void	random_speed();
-        void    random_destination();
-        int	set_destination(double x, double y, double speed);
-	  
+	void log_movement();
+	void random_direction();
+	void random_speed();
+	void random_destination();
+	int set_destination(double x, double y, double speed);
+
 private:
 	inline int initialized() {
-		return (T_ && log_target_ &&
-			X_ >= T_->lowerX() && X_ <= T_->upperX() &&
-			Y_ >= T_->lowerY() && Y_ <= T_->upperY());
+		return (T_ && log_target_ && X_ >= T_->lowerX() && X_ <= T_->upperX()
+				&& Y_ >= T_->lowerY() && Y_ <= T_->upperY());
 	}
-	void		random_position();
-	void		bound_position();
-	int		random_motion_;	// is mobile
+	void random_position();
+	void bound_position();
+	int random_motion_; // is mobile
 
 	/*
 	 * A global list of mobile nodes
 	 */
 	LIST_ENTRY(MobileNode) link_;
-
 
 	/*
 	 * The topography over which the mobile node moves.
@@ -232,11 +252,10 @@ private:
 	 * Trace Target
 	 */
 	Trace* log_target_;
-        /* 
+	/*
 	 * base_stn for mobilenodes communicating with wired nodes
-         */
+	 */
 	int base_stn_;
-
 
 	//int last_rt_time_;
 };

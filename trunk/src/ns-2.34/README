@@ -1,1 +1,5 @@
 - Colocar na linha 270 	"wfrp/wfrp.o \ " do arquivo Makefile principal (ns-allinone-2.34/Makefile).
+
+
+- Arquivo mac/channel.{cc,h} possui a lista com os nodo cadastrados.
+	- Os objetos desta lista fazem parte da classse common/mobilebnode.{cc,h}

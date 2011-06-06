@@ -48,7 +48,7 @@ static class WFRPHeaderClass : public PacketHeaderClass {
  public:
 	WFRPHeaderClass() : PacketHeaderClass("PacketHeader/WFRP", sizeof(hdr_all_wfrp)) {
 	  bind_offset(&hdr_wfrp::offset_);
-	  printf("Inicializa classe WFRPHeaderClass - wfrp.cc\n");
+	  //printf("Inicializa classe WFRPHeaderClass - wfrp.cc\n");
 	} 
 } class_rtProtoWFRP_hdr;
 
@@ -62,15 +62,16 @@ static class WFRPclass : public TclClass {
 
 	TclObject* create(int argc, const char*const* argv) {
 
-		printf("Inicializa classe WFRPclass - wfrp.cc\n");
+		//printf("Inicializa classe WFRPclass - wfrp.cc\n");
 		//printf("Argumentos: %s\n", argv[4]);
-		printf("Argumentos: %d - ", argc);
-		int i = 0;
-		for (i = 0; i < argc; i++)
-			printf("%s - ", argv[i]);
-		printf("\n");
+		//printf("Argumentos: %d - ", argc);
+		//int i = 0;
+		//for (i = 0; i < argc; i++)
+		//	printf("%s - ", argv[i]);
+		//printf("\n");
 
 		assert(argc == 5);
+		fprintf(stdout, "Endereço: %d\n", Address::instance().str2addr(argv[4]));
 		return (new WFRP((nsaddr_t) Address::instance().str2addr(argv[4])));
 	}
 } class_rtProtoWFRP;
@@ -78,13 +79,13 @@ static class WFRPclass : public TclClass {
 
 int
 WFRP::command(int argc, const char*const* argv) {
-	printf("command argc = %d\n", argc);
+	//printf("command argc = %d\n", argc);
 	int i = 0;
 
-	printf("Argumentos: ");
-	for (i = 0; i < argc; i++)
-		printf("%s - ", argv[i]);
-	printf("\n");
+	//printf("Argumentos: ");
+	//for (i = 0; i < argc; i++)
+	//	printf("%s - ", argv[i]);
+	//printf("\n");
 
 	if(argc == 2) {
 		Tcl& tcl = Tcl::instance();
@@ -147,7 +148,7 @@ WFRP::command(int argc, const char*const* argv) {
 			return TCL_OK;
 		}
 	}
-	
+
 	return Agent::command(argc, argv);
 }
 
