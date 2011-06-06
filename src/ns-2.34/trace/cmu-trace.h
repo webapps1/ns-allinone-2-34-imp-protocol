@@ -47,8 +47,8 @@
 #endif /* !__PRETTY_FUNCTION__ */
 
 /* ======================================================================
-   Global Defines
-   ====================================================================== */
+ Global Defines
+ ====================================================================== */
 #define	DROP            'D'
 #define	RECV            'r'
 #define	SEND    	's'
@@ -56,8 +56,6 @@
 
 // change wrt Mike's code
 #define EOT             'x'
-
-
 
 #define TR_ROUTER	0x01
 #define TR_MAC		0x02
@@ -75,7 +73,6 @@
 #define DROP_MAC_BUSY			"BSY"
 #define DROP_MAC_INVALID_DST            "DST"
 #define DROP_MAC_SLEEP                  "SLP"   // smac sleep state
-
 #define DROP_RTR_NO_ROUTE		"NRTE"  // no route
 #define DROP_RTR_ROUTE_LOOP		"LOOP"  // routing loop
 #define DROP_RTR_TTL                    "TTL"   // ttl reached zero
@@ -89,7 +86,6 @@
 #define DROP_IFQ_FILTER                 "FIL"
 
 #define DROP_OUTSIDE_SUBNET             "OUT"   // dropped by base stations if received rtg updates from nodes outside its domain.
-
 #define MAX_ID_LEN	3
 #define MAX_NODE	4096
 
@@ -98,69 +94,69 @@
  * for newly defined packet types 
  * 
  */
-class PacketTracer
-{
-	public:
-		PacketTracer();
-        	virtual ~PacketTracer();
-		void setNext(PacketTracer *next);
-		PacketTracer *getNext();
-		int format_unknow(Packet *p, int offset, BaseTrace *pt_, int newtrace);
-	protected:
-		virtual int format(Packet *p, int offset, BaseTrace *pt_, int newtrace) = 0;	//return 0 if the packet is unknown
-		PacketTracer *next_;
+class PacketTracer {
+public:
+	PacketTracer();
+	virtual ~PacketTracer();
+	void setNext(PacketTracer *next);
+	PacketTracer *getNext();
+	int format_unknow(Packet *p, int offset, BaseTrace *pt_, int newtrace);
+protected:
+	virtual int format(Packet *p, int offset, BaseTrace *pt_, int newtrace) = 0; //return 0 if the packet is unknown
+	PacketTracer *next_;
 };
 
-
-class CMUTrace : public Trace {
+class CMUTrace: public Trace {
 public:
 	CMUTrace(const char *s, char t);
-	void	recv(Packet *p, Handler *h);
-	void	recv(Packet *p, const char* why);
+	void recv(Packet *p, Handler *h);
+	void recv(Packet *p, const char* why);
 
 	static void addPacketTracer(PacketTracer *pt);
 
-
 private:
-	char	tracename[MAX_ID_LEN + 1];
-	int	nodeColor[MAX_NODE];
-        int     tracetype;
-        MobileNode *node_;
-	int     newtrace_;
+	char tracename[MAX_ID_LEN + 1];
+	int nodeColor[MAX_NODE];
+	int tracetype;
+	MobileNode *node_;
+	int newtrace_;
 
 	//<zheng: ns 2.27 removed the following part, but we need it to control the broadcast radius>
-        static double  bradius;
-        static double  radius_scaling_factor_;
-        static double  duration_scaling_factor_;
-        static void calculate_broadcast_parameters();
+	static double bradius;
+	static double radius_scaling_factor_;
+	static double duration_scaling_factor_;
+	static void calculate_broadcast_parameters();
 	//</zheng>
 
-        int initialized() { return node_ && 1; }
+	int initialized() {
+		return node_ && 1;
+	}
 	int node_energy();
-	int	command(int argc, const char*const* argv);
-	void	format(Packet *p, const char *why);
+	int command(int argc, const char* const * argv);
+	void format(Packet *p, const char *why);
 
-        void    nam_format(Packet *p, int offset);
+	void nam_format(Packet *p, int offset);
 
-	void	format_phy(Packet *p, int offset);
-	
-	void	format_mac_common(Packet *p, const char *why, int offset);
-	void    format_mac(Packet *p, int offset);
-	void    format_smac(Packet *p, int offset);
-	void	format_ip(Packet *p, int offset);
+	void format_phy(Packet *p, int offset);
 
-	void	format_arp(Packet *p, int offset);
-	void    format_hdlc(Packet *p, int offset);
-	void	format_dsr(Packet *p, int offset);
-	void	format_msg(Packet *p, int offset);
-	void	format_tcp(Packet *p, int offset);
-	void    format_sctp(Packet *p, int offset);
-	void	format_rtp(Packet *p, int offset);
-	void	format_tora(Packet *p, int offset);
-        void    format_imep(Packet *p, int offset);
-        void    format_aodv(Packet *p, int offset);
-	void    format_aomdv(Packet *p, int offset);
-        void    format_wfrp(Packet *p, int offset);
+	void format_mac_common(Packet *p, const char *why, int offset);
+	void format_mac(Packet *p, int offset);
+	void format_smac(Packet *p, int offset);
+	void format_ip(Packet *p, int offset);
+
+	void format_arp(Packet *p, int offset);
+	void format_hdlc(Packet *p, int offset);
+	void format_dsr(Packet *p, int offset);
+	void format_msg(Packet *p, int offset);
+	void format_tcp(Packet *p, int offset);
+	void format_sctp(Packet *p, int offset);
+	void format_rtp(Packet *p, int offset);
+	void format_tora(Packet *p, int offset);
+	void format_imep(Packet *p, int offset);
+	void format_aodv(Packet *p, int offset);
+	void format_aomdv(Packet *p, int offset);
+	void format_wfrp(Packet *p, int offset);
+	void format_xfxvanets(Packet *p, int offset);
 
 	// This holds all the tracers added at run-time
 	static PacketTracer *pktTrc_;

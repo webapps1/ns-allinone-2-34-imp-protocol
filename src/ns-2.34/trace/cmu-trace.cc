@@ -1577,3 +1577,9 @@ void CMUTrace::format_wfrp(Packet *p, int offset)
         abort();
     }
 }
+
+// XFXVanets patch
+void CMUTrace::format_xfxvanets(Packet *p, int offset)
+{
+	// i have no idea about what we're going to do here.
+}

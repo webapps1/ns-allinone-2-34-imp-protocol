@@ -110,6 +110,10 @@ class MobileNode;
 #endif
 class MobileNode;
 
+typedef struct {
+	double x, y, z;
+} car_route;
+
 class PositionHandler: public Handler {
 public:
 	PositionHandler(MobileNode* n) :
@@ -214,6 +218,10 @@ protected:
 	double destX_;
 	double destY_;
 
+	/* my route */
+	car_route * route;
+	int size_route, capacity_route;
+
 	/*
 	 * for gridkeeper use only
 	 */
@@ -238,6 +246,7 @@ private:
 	void random_position();
 	void bound_position();
 	int random_motion_; // is mobile
+	void read_route(const char *  const *, int);
 
 	/*
 	 * A global list of mobile nodes

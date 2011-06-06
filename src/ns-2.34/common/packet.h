@@ -104,12 +104,12 @@ static const packet_t PT_RTPROTO_DV = 16;
 static const packet_t PT_CtrMcast_Encap = 17;
 static const packet_t PT_CtrMcast_Decap = 18;
 static const packet_t PT_SRM = 19;
-        /* simple signalling messages */
+/* simple signalling messages */
 static const packet_t PT_REQUEST = 20;
 static const packet_t PT_ACCEPT = 21;
 static const packet_t PT_CONFIRM = 22;
 static const packet_t PT_TEARDOWN = 23;
-static const packet_t PT_LIVE = 24;   // packet from live network
+static const packet_t PT_LIVE = 24; // packet from live network
 static const packet_t PT_REJECT = 25;
 
 static const packet_t PT_TELNET = 26; // not needed: telnet use TCP
@@ -119,74 +119,78 @@ static const packet_t PT_EXP = 29;
 static const packet_t PT_INVAL = 30;
 static const packet_t PT_HTTP = 31;
 
-        /* new encapsulator */
+/* new encapsulator */
 static const packet_t PT_ENCAPSULATED = 32;
 static const packet_t PT_MFTP = 33;
 
-        /* CMU/Monarch's extnsions */
+/* CMU/Monarch's extnsions */
 static const packet_t PT_ARP = 34;
 static const packet_t PT_MAC = 35;
 static const packet_t PT_TORA = 36;
 static const packet_t PT_DSR = 37;
 static const packet_t PT_AODV = 38;
 static const packet_t PT_IMEP = 39;
-        
-        // RAP packets
+
+// RAP packets
 static const packet_t PT_RAP_DATA = 40;
 static const packet_t PT_RAP_ACK = 41;
-  
+
 static const packet_t PT_TFRC = 42;
 static const packet_t PT_TFRC_ACK = 43;
 static const packet_t PT_PING = 44;
-        
+
 static const packet_t PT_PBC = 45;
-        // Diffusion packets - Chalermek
+// Diffusion packets - Chalermek
 static const packet_t PT_DIFF = 46;
-        
-        // LinkState routing update packets
+
+// LinkState routing update packets
 static const packet_t PT_RTPROTO_LS = 47;
-        
-        // MPLS LDP header
+
+// MPLS LDP header
 static const packet_t PT_LDP = 48;
-        
-        // GAF packet
+
+// GAF packet
 static const packet_t PT_GAF = 49;
-        
-        // ReadAudio traffic
+
+// ReadAudio traffic
 static const packet_t PT_REALAUDIO = 50;
-        
-        // Pushback Messages
+
+// Pushback Messages
 static const packet_t PT_PUSHBACK = 51;
-  
-  #ifdef HAVE_STL
-        // Pragmatic General Multicast
+
+#ifdef HAVE_STL
+// Pragmatic General Multicast
 static const packet_t PT_PGM = 52;
-  #endif //STL
-        // LMS packets
+#endif //STL
+// LMS packets
 static const packet_t PT_LMS = 53;
 static const packet_t PT_LMS_SETUP = 54;
 
 static const packet_t PT_SCTP = 55;
 static const packet_t PT_SCTP_APP1 = 56;
 
-        // SMAC packet
+// SMAC packet
 static const packet_t PT_SMAC = 57;
-        // XCP packet
+// XCP packet
 static const packet_t PT_XCP = 58;
 
-        // HDLC packet
+// HDLC packet
 static const packet_t PT_HDLC = 59;
 
-        // Bell Labs Traffic Trace Type (PackMime OL)
+// Bell Labs Traffic Trace Type (PackMime OL)
 static const packet_t PT_BLTRACE = 60;
 
-	// AOMDV packet
+// AOMDV packet
 static const packet_t PT_WFRP = 61;
 
+// WFRC packet
 static const packet_t PT_AOMDV = 62;
 
-        // insert new packet types here
-static packet_t       PT_NTYPE = 63; // This MUST be the LAST one
+// XFX Vanets Protocol
+static const packet_t PT_XFXVanets = 63;
+
+// insert new packet types here
+static packet_t PT_NTYPE = 64; // This MUST be the LAST one
 
 enum packetClass
 {
@@ -252,7 +256,8 @@ public:
 		    type == PT_MESSAGE || 
 		    type == PT_TORA || 
 		    type == PT_AODV || 
-                    type == PT_WFRP)
+		    type == PT_XFXVanets ||
+		    type == PT_WFRP)
 			return ROUTING;		
 		if (type == PT_TCP || 
 		    type == PT_TELNET || 
@@ -388,6 +393,9 @@ public:
 		name_[PT_AOMDV]= "AOMDV";
 
 		name_[PT_WFRP] = "WFRP";
+
+		// XFX Vanets
+		name_[PT_XFXVanets] = "XFXVanets";
 
 		name_[PT_NTYPE]= "undefined";
 	}

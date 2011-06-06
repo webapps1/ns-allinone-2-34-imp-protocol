@@ -204,6 +204,12 @@ Node/MobileNode instproc add-target { agent port } {
 		$agent if-queue [$self set ifq_(0)]   ;# ifq between LL and MAC
 	}
 	
+	# Special processing for XFXVanets
+	set xfxvanetsponly [string first "XFXVanets" [$agent info class]]
+	if {$xfxvanetsponly != -1 } {
+                $agent if-queue [$self set ifq_(0)]   ;# ifq between LL and MAC
+	}
+	
 	#<zheng: add>
 	# Special processing for ZBR
 	#set zbronly [string first "ZBR" [$agent info class]] 

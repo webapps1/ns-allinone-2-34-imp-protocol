@@ -73,8 +73,6 @@ public:
 		TclClass("Node/MobileNode") {
 	}
 	TclObject* create(int a, const char* const * b) {
-		printf("Inicializando MobileNodeClass - mobilenode.cc\n");
-		printf("%d \n", a);
 		return (new MobileNode);
 	}
 } class_mobilenode;
@@ -117,7 +115,8 @@ void PositionHandler::handle(Event*) {
 MobileNode::MobileNode(void) :
 	pos_handle_(this) {
 
-	printf("Método MobileNode - mobilenode.cc\n");
+	//sprintf("Método MobileNode - mobilenode.cc\n");
+	route = NULL;
 
 	X_ = Y_ = Z_ = speed_ = 0.0;
 	dX_ = dY_ = dZ_ = 0.0;
@@ -146,7 +145,12 @@ MobileNode::MobileNode(void) :
 
 int MobileNode::command(int argc, const char* const * argv) {
 	Tcl& tcl = Tcl::instance();
-	if (argc == 2) {
+
+	if (strcmp(argv[1], "route") == 0){ // rota de determinado nó
+		read_route((const char *  const *) argv, argc);
+
+		return TCL_OK;
+	} else if (argc == 2) {
 		if (strcmp(argv[1], "start") == 0) {
 			start();
 			return TCL_OK;
@@ -213,7 +217,6 @@ int MobileNode::command(int argc, const char* const * argv) {
 			energy_model()->node_on() = true;
 			return TCL_OK;
 		}
-
 	} else if (argc == 3) {
 		if (strcmp(argv[1], "addif") == 0) {
 			WiredPhy* phyp = (WiredPhy*) TclObject::lookup(argv[2]);
@@ -277,7 +280,7 @@ int MobileNode::command(int argc, const char* const * argv) {
 					address_, __FUNCTION__);
 #endif
 
-			fprintf(stdout, "variavel novo_ %lf", NOVO_);
+			fprintf(stdout, "===\nsetdest\n");
 
 			if (set_destination(atof(argv[2]), atof(argv[3]), atof(argv[4]))
 					< 0)
@@ -581,4 +584,35 @@ double MobileNode::propdelay(MobileNode *m) {
 }
 
 void MobileNode::idle_energy_patch(float /*total*/, float /*P_idle*/) {
+}
+
+/**
+ * Faz a leitura das rotas de determinado nodo e insere em uma lista.
+ */
+void MobileNode::read_route(const char *  const *argv, int argc){
+	int i = 2;
+
+	if (route != NULL)
+		free(route);
+
+	capacity_route = (argc-2)/3;
+	route = (car_route *)malloc(sizeof(car_route)*(capacity_route));
+	size_route = 0;
+
+	fprintf(stdout, "Capacidade: %d; Size; %d\n", capacity_route, size_route);
+	fprintf(stdout, "I: %d\n", i);
+
+	fprintf(stdout, "Argc: %d\n", argc);
+
+	while (i < argc){
+		route[size_route].x = atof(argv[i++]);
+		route[size_route].y = atof(argv[i++]);
+		route[size_route].z = atof(argv[i++]);
+
+		fprintf(stdout, "(%lf, %lf, %lf), ", route[size_route].x, route[size_route].y, route[size_route].z);
+
+		size_route++;
+	}
+
+	fprintf(stdout, "\n");
 }
