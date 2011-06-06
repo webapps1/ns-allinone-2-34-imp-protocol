@@ -390,7 +390,11 @@ WirelessChannel::sendUp(Packet* p, Phy *tifp)
 	 Packet::free(p);
 }
 
-
+/**
+ * Ao utilizar o aodv, este método é utilizado para inserir novos nodos na rede.
+ *
+ * @
+ */
 void
 WirelessChannel::addNodeToList(MobileNode *mn)
 {
@@ -398,7 +402,7 @@ WirelessChannel::addNodeToList(MobileNode *mn)
 
 	// create list of mobilenodes for this channel
 	if (xListHead_ == NULL) {
-		fprintf(stderr, "INITIALIZE THE LIST xListHead\n");
+		fprintf(stderr, "INITIALIZE THE LIST xListHead - editado\n");
 		xListHead_ = mn;
 		xListHead_->nextX_ = NULL;
 		xListHead_->prevX_ = NULL;
@@ -407,6 +411,8 @@ WirelessChannel::addNodeToList(MobileNode *mn)
 		tmp->nextX_ = mn;
 		mn->prevX_ = tmp;
 		mn->nextX_ = NULL;
+
+		fprintf(stdout, "NumNodes: %d\n", numNodes_);
 	}
 	numNodes_++;
 }

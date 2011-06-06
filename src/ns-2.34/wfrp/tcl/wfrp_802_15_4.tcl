@@ -85,10 +85,14 @@ for {set i 1} {$i < $val(nn) } { incr i } {
 $mnode_(0) set X_ [ expr {$val(x)/2} ]
 $mnode_(0) set Y_ [ expr {$val(y)/2} ]
 $mnode_(0) set Z_ 0.0
+$mnode_(0) set NOVO_ 0.0
 $mnode_(0) label "Sink"
 
 #start sending beacon message
 $ns at 1.0 "[$mnode_(0) set ragent_] sink"
+$ns at 10.0 "$mnode_(0) setdest 25.0 25.0 1.0"
+
+$ns at 10.0 "$mnode_(0) novometodo 25.0 25.0 1.0" 
 
 for {set i 0} {$i < $val(nn)} { incr i } {
 	$ns initial_node_pos $mnode_($i) 3

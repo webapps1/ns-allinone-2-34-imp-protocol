@@ -96,30 +96,12 @@ $ftp attach-agent $tcp
 $ns at 10.0 "$ftp start"  
  
 # Printing the window size 
-proc plotWindow {tcpSource file} { 
-global ns 
-set time 0.01 
-set now [$ns now] 
-set cwnd [$tcpSource set cwnd_] 
-puts $file "$now $cwnd" 
-$ns at [expr $now+$time] "plotWindow $tcpSource $file" } 
-$ns at 10.1 "plotWindow $tcp $windowVsTime2"   
- 
-# Define node initial position in nam 
-for {set i 0} {$i  $val(nn)} { incr i } { 
-# 30 defines the node size for nam 
-$ns initial_node_pos $node_($i) 30 
-} 
- 
-# Telling nodes when the simulation ends 
-for {set i 0} {$i  $val(nn) } { incr i } { 
-    $ns at $val(stop) "$node_($i) reset"; 
-} 
  
 # ending nam and the simulation  
 $ns at $val(stop) "$ns nam-end-wireless $val(stop)" 
 $ns at $val(stop) "stop" 
 $ns at 150.01 "puts \"end simulation\" ; $ns halt" 
+
 proc stop {} { 
     global ns tracefd namtrace 
     $ns flush-trace 

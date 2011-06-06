@@ -96,10 +96,18 @@ protected:
   };*/
 
 
+
+
+
+
+
+
 /*====================================================================
   WirelessChannel
 
   This class is used to represent the physical media used by mobilenodes
+
+  Classe que faz a administração da lista de nodos.
 ====================================================================*/
 
 class WirelessChannel : public Channel{

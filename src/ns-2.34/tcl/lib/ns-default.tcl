@@ -554,6 +554,8 @@ Node set rtagent_port_ 255
 # setting port for diffusion application agent
 Node set DIFFUSION_APP_PORT 254
 
+# Alterado para não dar mais warning na variável _NOVO
+Node/MobileNode set NOVO_			0
 Node/MobileNode set X_				0
 Node/MobileNode set Y_				0
 Node/MobileNode set Z_				0
