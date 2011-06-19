@@ -128,12 +128,6 @@ void BroadcastTimerXFX::handle(Event*){
 void HelloTimerXFX::handle(Event*) {
 	agent->sendHello();
 	Scheduler::instance().schedule(this, &intr, TIME_HELLO_MESSAGE);
-
-	fprintf(stdout, "I'm %d\n", agent->index);
-	fprintf(stdout, "My route: ");
-
-
-	cout << list_mobile_nodes::instance()->size() << endl;
 }
 
 /* ========================================================================= */
