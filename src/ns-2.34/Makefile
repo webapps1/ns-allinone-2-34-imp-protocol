@@ -268,6 +268,7 @@ OBJ_CC = \
 	imep/imep_util.o imep/imep_io.o \
 	tora/tora.o tora/tora_api.o tora/tora_dest.o \
 	wfrp/wfrp.o \
+	avanets/list_mobile_nodes.o \
 	avanets/vanets_neighbor_table.o \
 	avanets/vanets_buffer_msgs.o \
 	avanets/vanets_queue.o \

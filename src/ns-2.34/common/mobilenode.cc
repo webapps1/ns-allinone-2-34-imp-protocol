@@ -43,6 +43,10 @@
  * 11/98.
  */
 
+#include <iostream>
+#include <cstdlib>
+#include <iosfwd>
+
 #include <math.h>
 #include <stdlib.h>
 
@@ -62,6 +66,8 @@
 #include "phy.h"
 #include "wired-phy.h"
 #include "god.h"
+
+#include <avanets/list_mobile_nodes.h>
 
 // XXX Must supply the first parameter in the macro otherwise msvc
 // is unhappy. 
@@ -116,7 +122,6 @@ MobileNode::MobileNode(void) :
 	pos_handle_(this) {
 
 	//sprintf("Método MobileNode - mobilenode.cc\n");
-	route = NULL;
 
 	X_ = Y_ = Z_ = speed_ = 0.0;
 	dX_ = dY_ = dZ_ = 0.0;
@@ -135,6 +140,9 @@ MobileNode::MobileNode(void) :
 
 	LIST_INSERT_HEAD(&nodehead, this, link_); // node list
 	LIST_INIT(&ifhead_); // interface list
+
+	list_mobile_nodes::instance()->add((void *)this);
+	fprintf(stdout, "Em mob: %u\n", list_mobile_nodes::instance()->size());
 
 	bind("X_", &X_);
 	bind("Y_", &Y_);
@@ -587,32 +595,33 @@ void MobileNode::idle_energy_patch(float /*total*/, float /*P_idle*/) {
 }
 
 /**
- * Faz a leitura das rotas de determinado nodo e insere em uma lista.
+ * Read positions
+ *
+ * @author Roger Duarte.
  */
-void MobileNode::read_route(const char *  const *argv, int argc){
-	int i = 2;
+void MobileNode::read_route(const char * const *argv, int argc){
+	const char * tmp1, *tmp2, *tmp3;
 
-	if (route != NULL)
-		free(route);
+	//fprintf(stdout, "Tamanho da lista de nodes: %d\n", pointersMobileNode.size());
 
-	capacity_route = (argc-2)/3;
-	route = (car_route *)malloc(sizeof(car_route)*(capacity_route));
-	size_route = 0;
+	for (int i = 2; i < argc;){
+		tmp1 = argv[i++];
+		tmp2 = argv[i++];
+		tmp3 = argv[i++];
 
-	fprintf(stdout, "Capacidade: %d; Size; %d\n", capacity_route, size_route);
-	fprintf(stdout, "I: %d\n", i);
-
-	fprintf(stdout, "Argc: %d\n", argc);
-
-	while (i < argc){
-		route[size_route].x = atof(argv[i++]);
-		route[size_route].y = atof(argv[i++]);
-		route[size_route].z = atof(argv[i++]);
-
-		fprintf(stdout, "(%lf, %lf, %lf), ", route[size_route].x, route[size_route].y, route[size_route].z);
-
-		size_route++;
+		routeNode.push_back(CarRoute(tmp1, tmp2, tmp3));
 	}
+}
 
-	fprintf(stdout, "\n");
+/**
+ * Return positions of this node.
+ *
+ * @author Roger Duarte.
+ */
+string MobileNode::getPositions() {
+	string out = "";
+	for (list<CarRoute>::iterator it = routeNode.begin(); it != routeNode.end(); it++) {
+		out += it->to_string();
+	}
+	return out;
 }

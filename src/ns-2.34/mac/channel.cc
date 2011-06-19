@@ -415,6 +415,7 @@ WirelessChannel::addNodeToList(MobileNode *mn)
 		fprintf(stdout, "NumNodes: %d\n", numNodes_);
 	}
 	numNodes_++;
+
 }
 
 void

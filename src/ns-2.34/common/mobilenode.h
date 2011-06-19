@@ -52,6 +52,9 @@ class MobileNode;
 #define MAX_SPEED			5.0    // meters per second (33.55 mph)
 #define MIN_SPEED			0.0
 
+#include <iostream>
+#include <string>
+#include <list>
 
 #include "object.h"
 #include "trace.h"
@@ -64,7 +67,7 @@ class MobileNode;
 #include "energy-model.h"
 #include "location.h"
 
-
+using namespace std;
 
 #if COMMENT_ONLY
 		 -----------------------
@@ -110,9 +113,51 @@ class MobileNode;
 #endif
 class MobileNode;
 
-typedef struct {
-	double x, y, z;
-} car_route;
+class CarRoute {
+private:
+	string x;
+	string y;
+	string z;
+public:
+	CarRoute(const char *x, const char *y, const char *z){
+		setx(x);
+		sety(y);
+		setz(z);
+	}
+
+	void setx(const char *t){
+		x = "";
+		int size = strlen(t);
+
+		for (int i = 0; i < size; i++)
+			x += t[i];
+	}
+
+	void sety(const char *t){
+		y = "";
+		int size = strlen(t);
+
+		for (int i = 0; i < size; i++)
+			y += t[i];
+	}
+
+	void setz(const char *t){
+		z = "";
+		int size = strlen(t);
+
+		for (int i = 0; i < size; i++)
+			z += t[i];
+	}
+
+	string to_string(){
+		string out = "";
+
+		out += "(" + x + ", " + y + " ," + z + ")";
+
+		return out;
+	}
+};
+
 
 class PositionHandler: public Handler {
 public:
@@ -136,6 +181,7 @@ public:
 	double distance(MobileNode*);
 	double propdelay(MobileNode*);
 	void start(void);
+	string getPositions();
 
 	inline void getLoc(double *x, double *y, double *z) {
 		update_position();
@@ -219,8 +265,7 @@ protected:
 	double destY_;
 
 	/* my route */
-	car_route * route;
-	int size_route, capacity_route;
+	list<CarRoute> routeNode;
 
 	/*
 	 * for gridkeeper use only

@@ -40,11 +40,17 @@
 #ifndef ns_channel_h
 #define ns_channel_h
 
+
+#include <iostream>
+#include <list>
+
 #include <string.h>
 #include "object.h"
 #include "packet.h"
 #include "phy.h"
 #include "node.h"
+
+using namespace std;
 
 class Trace;
 class Node;
@@ -95,13 +101,6 @@ protected:
   inline double txstop() { return 0; }
   };*/
 
-
-
-
-
-
-
-
 /*====================================================================
   WirelessChannel
 
@@ -115,12 +114,10 @@ class WirelessChannel : public Channel{
 public:
 	WirelessChannel(void);
 	virtual int command(int argc, const char*const* argv);
-        inline double gethighestAntennaZ() { return highestAntennaZ_; }
-
+    inline double gethighestAntennaZ() { return highestAntennaZ_; }
 private:
 	void sendUp(Packet* p, Phy *txif);
 	double get_pdelay(Node* tnode, Node* rnode);
-	
 	/* For list-keeper, channel keeps list of mobilenodes 
 	   listening on to it */
 	int numNodes_;
