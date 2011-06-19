@@ -41,16 +41,11 @@
 #define ns_channel_h
 
 
-#include <iostream>
-#include <list>
-
 #include <string.h>
 #include "object.h"
 #include "packet.h"
 #include "phy.h"
 #include "node.h"
-
-using namespace std;
 
 class Trace;
 class Node;

@@ -68,24 +68,23 @@ $node_(1) set X_ 280
 $node_(1) set Y_ 180.0
 $node_(1) set Z_ 0.0
 
-
-# Movimento
-$ns at 5.0 "$node_(0) setdest 250.0 250.0 0.0"
-$ns at 6.0 "$node_(1) setdest 200.0 300.0 0.0"
+# Generation of movements
+$ns at 10.0 "$node_(0) setdest 250.0 250.0 10.0"
+$ns at 15.0 "$node_(1) setdest 200.0 300.0 10.0"
 
 #---------------------- configure node 0 and node 1
 #---------------------- node 0 as tcp and node 1 as sink
-#set tcp01 [new Agent/TCP/Newreno]
-#$ns attach-agent $node_(0) $tcp01
+set tcp01 [new Agent/TCP/Newreno]
+$ns attach-agent $node_(0) $tcp01
 
-#set sink01 [new Agent/TCPSink]
-#$ns attach-agent $node_(1) $sink01
+set sink01 [new Agent/TCPSink]
+$ns attach-agent $node_(1) $sink01
 
-#$ns connect $tcp01 $sink01
+$ns connect $tcp01 $sink01
 
-#set ftp01 [new Application/FTP]
-#$ftp01 attach-agent $tcp01
-#$ns at 1.0 "$ftp01 start"
+set ftp01 [new Application/FTP]
+$ftp01 attach-agent $tcp01
+$ns at 1.0 "$ftp01 start"
 
 # Printing the window size
 

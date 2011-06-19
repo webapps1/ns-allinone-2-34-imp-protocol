@@ -42,11 +42,6 @@
  * CMU-Monarch project's Mobility extensions ported by Padma Haldar, 
  * 11/98.
  */
-
-#include <iostream>
-#include <cstdlib>
-#include <iosfwd>
-
 #include <math.h>
 #include <stdlib.h>
 
@@ -142,7 +137,6 @@ MobileNode::MobileNode(void) :
 	LIST_INIT(&ifhead_); // interface list
 
 	list_mobile_nodes::instance()->add((void *)this);
-	fprintf(stdout, "Em mob: %u\n", list_mobile_nodes::instance()->size());
 
 	bind("X_", &X_);
 	bind("Y_", &Y_);
