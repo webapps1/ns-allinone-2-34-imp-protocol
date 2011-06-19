@@ -480,6 +480,8 @@ void AODV::rt_purge() {
 	double delay = 0.0;
 	Packet *p;
 
+	fprintf(stdout, "Index: %d\n", index);
+
 	for (rt = rtable.head(); rt; rt = rtn) { // for each rt entry
 		rtn = rt->rt_link.le_next;
 		if ((rt->rt_flags == RTF_UP) && (rt->rt_expire < now)) {

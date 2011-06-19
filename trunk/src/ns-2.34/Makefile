@@ -33,8 +33,8 @@ MANDEST	= /usr/local/man
 BLANK	= # make a blank space.  DO NOT add anything to this line
 
 # The following will be redefined under Windows (see WIN32 lable below)
-CC	= gcc
-CPP	= g++
+CC	= gcc -g
+CPP	= g++ -g
 LINK	= $(CPP)
 LINK_SHLIB = gcc -shared
 MKDEP	= ./conf/mkdep
@@ -64,7 +64,7 @@ DEFINE	= -DTCP_DELAY_BIND_ALL -DNO_TK -DTCLCL_CLASSINSTVAR  -DNDEBUG -DLINUX_TCP
 INCLUDES = \
 	-I.  \
 	-I. \
-	-I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl-1.13 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/usr/include/pcap \
+	-I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/include -I/usr/include/pcap \
 	-I./tcp -I./sctp -I./common -I./link -I./queue \
 	-I./adc -I./apps -I./mac -I./mobile -I./trace \
 	-I./routing -I./tools -I./classifier -I./mcast \
@@ -76,7 +76,7 @@ INCLUDES = \
 
 
 LIB	= \
-	-L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -ltclcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl-1.13 -lotcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltk8.4 -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltcl8.4 \
+	-L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/tclcl-1.19 -ltclcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/otcl -lotcl -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltk8.4 -L/home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/lib -ltcl8.4 \
 	-lXext -lX11 \
 	 -lnsl -ldl \
 	-lm -lm 
@@ -268,6 +268,9 @@ OBJ_CC = \
 	imep/imep_util.o imep/imep_io.o \
 	tora/tora.o tora/tora_api.o tora/tora_dest.o \
 	wfrp/wfrp.o \
+	avanets/vanets_neighbor_table.o \
+	avanets/vanets_buffer_msgs.o \
+	avanets/vanets_queue.o \
 	avanets/vanets.o \
 	tora/tora_io.o tora/tora_logs.o tora/tora_neighbor.o \
 	dsr/dsragent.o dsr/hdr_sr.o dsr/mobicache.o dsr/path.o \

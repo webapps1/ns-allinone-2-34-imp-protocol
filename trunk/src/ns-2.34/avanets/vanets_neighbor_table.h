@@ -5,24 +5,23 @@
  *      Author: roger
  */
 
-#ifndef VANETS_NEIGHBOR_VEHICLE_H_
-#define VANETS_NEIGHBOR_VEHICLE_H_
+#ifndef VANETS_NEIGHBOR_TABLE_H_
+#define VANETS_NEIGHBOR_TABLE_H_
 
 #include <iostream>
 #include <cstdlib>
 #include "vanets_packet.h"
 
-class vanets_neighbor_vehicle {
+class vanets_neighbor_table {
 private:
 	u_int32_t size, capacity;
-	u_int32_t default_init_size;
-	neighbor_vehicle_table *data_msgs;
+	neighbor_vehicle_object *data_vehicles;
 
 	void realloc_list(){
 		capacity = (capacity > 0)? capacity : 1;
-		data_msgs = (neighbor_vehicle_table *)realloc(data_msgs, sizeof(neighbor_vehicle_table)*capacity*2);
+		data_vehicles = (neighbor_vehicle_object *)realloc(data_vehicles, sizeof(neighbor_vehicle_object)*capacity*2);
 
-		if (data_msgs != NULL){
+		if (data_vehicles != NULL){
 			capacity *= 2;
 		} else {
 			size = 0;
@@ -30,7 +29,7 @@ private:
 		}
 	}
 
-	bool compare_object(neighbor_vehicle_table *msg1, neighbor_vehicle_table *msg2){
+	bool compare_object(neighbor_vehicle_object *msg1, neighbor_vehicle_object *msg2){
 		if (msg1->id_vehicle == msg2->id_vehicle)
 			return true;
 
@@ -43,11 +42,10 @@ private:
 		#endif
 	}
 public:
-	vanets_neighbor_vehicle();
-	bool insert(neighbor_vehicle_table *obj);
-	neighbor_vehicle_table * search (neighbor_vehicle_table *);
+	vanets_neighbor_table();
+	bool insert(neighbor_vehicle_object *obj);
+	neighbor_vehicle_object * search (neighbor_vehicle_object *);
 	void update_ttl();
-	void clear_tll_zero();
 };
 
 #endif /* VANETS_NEIGHBOR_VEHICLE_H_ */
