@@ -12,9 +12,11 @@
 #include <priqueue.h>
 #include <classifier/classifier-port.h>
 #include <avanets/vanets_neighbor_table.h>
+#include <common/mobilenode.h>
 #include <packet.h>
 
 class XFXVanets;
+class ListPointerMobileNode;
 
 class BroadcastTimerXFX: public Handler {
 public:

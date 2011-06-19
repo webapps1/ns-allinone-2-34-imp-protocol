@@ -1,9 +1,12 @@
 #include <random.h>
 #include <cmu-trace.h>
 #include <energy-model.h>
+#include <common/mobilenode.h>
 
 #include "vanets.h"
 #include "vanets_packet.h"
+
+#include "list_mobile_nodes.h"
 
 #define max(a,b)	((a) > (b)? (a) : (b))
 #define CURRENT_TIME    Scheduler::instance().clock()
@@ -13,7 +16,7 @@ int hdr_xfx::offset_;
 static class XFXVanetsHeaderClass: public PacketHeaderClass {
 public:
 	XFXVanetsHeaderClass() :
-		PacketHeaderClass(
+				PacketHeaderClass(
 						"PacketHeader/XFXVanets",
 						max(sizeof(packet_hello_message), sizeof(packet_general_message))) {
 		bind_offset(&hdr_xfx::offset_);
@@ -125,6 +128,12 @@ void BroadcastTimerXFX::handle(Event*){
 void HelloTimerXFX::handle(Event*) {
 	agent->sendHello();
 	Scheduler::instance().schedule(this, &intr, TIME_HELLO_MESSAGE);
+
+	fprintf(stdout, "I'm %d\n", agent->index);
+	fprintf(stdout, "My route: ");
+
+
+	cout << list_mobile_nodes::instance()->size() << endl;
 }
 
 /* ========================================================================= */
@@ -133,9 +142,6 @@ void HelloTimerXFX::handle(Event*) {
  */
 void XFXVanets::id_purge(){
 	neighbor_vehicles->update_ttl();
-
-	/** mostra minha posição */
-	c
 }
 
 /* ========================================================================= */
@@ -206,7 +212,7 @@ void XFXVanets::recvXFX(Packet *p) {
 			break;
 
 		default:
-			fprintf(stderr, "Invalid AODV type (%x)\n", ah->ah_type);
+			fprintf(stderr, "Invalid XFX type (%x)\n", ah->ah_type);
 			exit(1);
 	}
 }
