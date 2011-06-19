@@ -64,18 +64,31 @@ for {set i 0} {$i < $val(nn) } { incr i } {
 }
 
 ## seta as rotas
-$ns at 1.5 "$mnode_(0) route 0.0 1.0 2.0 12.0 13.0 14.0"
-$ns at 1.5 "$mnode_(1) route 1.0 3.0 3.0" 
-$ns at 1.5 "$mnode_(2) route 2.0 3.0 4.0" 
-$ns at 1.5 "$mnode_(3) route 3.0 4.0 5.0"
-$ns at 1.5 "$mnode_(4) route 4.0 5.0 6.0"
-
-for {set i 1} {$i < $val(nn) } { incr i } {
-     $mnode_($i) set X_ [ expr {$val(x) * rand()} ]
-     $mnode_($i) set Y_ [ expr {$val(y) * rand()} ]
-     $mnode_($i) set Z_ 0
-}
-
-#$ns at 1.5 "$mnode_(4) setdest 1.5 5.8 9.5"
+$ns at 1.5 "$mnode_(0) route 0.0 1.0 0.0 12.0 13.0 0.0"
+$mnode_(0) set X_ 0.0
+$mnode_(0) set Y_ 1.0
+$mnode_(0) set Z_ 0
+$ns at 1.5 "$mnode_(1) route 1.0 3.0 0.0 15.0 16.0 0.0"
+$mnode_(1) set X_ 1.0
+$mnode_(1) set Y_ 3.0
+$mnode_(1) set Z_ 0
+$ns at 1.5 "$mnode_(2) route 2.0 3.0 0.0 10.0 12.0 0.0"
+$mnode_(2) set X_ 2.0
+$mnode_(2) set Y_ 3.0
+$mnode_(2) set Z_ 0
+$ns at 1.5 "$mnode_(3) route 3.0 4.0 0.0 14.0 15.0 0.0"
+$mnode_(3) set X_ 3.0
+$mnode_(3) set Y_ 4.0
+$mnode_(3) set Z_ 0
+$ns at 1.5 "$mnode_(4) route 4.0 5.0 0.0 17.0 18.0 0.0"
+$mnode_(4) set X_ 4.0
+$mnode_(4) set Y_ 5.0
+$mnode_(4) set Z_ 0
+#-- seta os destinos
+$ns at 3.5 "$mnode_(0) setdest 12.0 13.0 0.0"
+$ns at 4.5 "$mnode_(1) setdest 15.0 16.0 0.0"
+$ns at 5.5 "$mnode_(2) setdest 10.0 12.0 0.0"
+$ns at 3.5 "$mnode_(3) setdest 14.0 15.0 0.0"
+$ns at 4.5 "$mnode_(4) setdest 17.0 18.0 0.0"
 
 $ns run
