@@ -41,6 +41,7 @@ private:
 // ======================================================================
 #define XFX_MSG_HELLO_MOVEL 0x1
 #define XFX_MSG_HELLO_STATIC 0x2
+#define XFX_MSG_NORMAL 0x3
 
 // ======================================================================
 //  Timers (Broadcast ID, Hello)

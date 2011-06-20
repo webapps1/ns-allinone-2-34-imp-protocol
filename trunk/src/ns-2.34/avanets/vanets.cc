@@ -184,19 +184,64 @@ void XFXVanets::sendHello() {
 /**
  * Recebe as mensagens
  */
-void XFXVanets::recv(Packet *p, Handler *){
-	struct hdr_cmn *ch = HDR_CMN(p);
-	struct hdr_ip *ih = HDR_IP(p);
+void XFXVanets::recv(Packet *p1, Handler *){
+	struct hdr_cmn *ch1 = HDR_CMN(p1);
+	struct hdr_ip *ih1 = HDR_IP(p1);
 
-	if (ch->ptype() == PT_XFXVanets) {
-		ih->ttl_ -= 1;
-		recvXFX(p);
+	if (ch1->ptype() == PT_XFXVanets) {
+		ih1->ttl_ -= 1;
+		recvXFX(p1);
 		return;
 	}
 
-	cout << "Recebi uma mensagem, que até o momento eu não conheço" << endl;
 	cout << "Id: " << index << endl;
-	cout << ih->saddr() << endl;
+	cout << ih1->saddr() << endl;
+	cout << ih1->daddr() << endl;
+
+	//  Must be a packet I'm originating
+	if((ih1->saddr() == index) && (ch1->num_forwards() == 0)) {
+		if (ch1->ptype() != PT_TCP && ch1->ptype() != PT_ACK) {
+			ch1->size() += IP_HDR_LEN;
+		}
+	} else if(ih1->saddr() == index) {// I received a packet that I sent.  Probably routing loop.
+   		drop(p1, DROP_RTR_ROUTE_LOOP);
+		return;
+	} else { //  Packet I'm forwarding...
+		if(--ih1->ttl_ == 0) {
+			drop(p1, DROP_RTR_TTL);
+			return;
+   		}
+	}
+
+	/** aqui, validar o caminho para um determinada mensagem */
+
+	/* forward packet */
+	Packet *p = Packet::alloc();
+	struct hdr_cmn *ch = HDR_CMN(p);
+	struct hdr_ip *ih = HDR_IP(p);
+	struct hdr_xfx_reply *rh = HDR_XFX_REPLY(p);
+
+	rh->rp_type = XFX_MSG_NORMAL;
+
+	rh->rp_dst = index;
+	rh->rp_dst_seqno = seqno;
+	rh->rp_lifetime = 4;
+
+	// ch->uid() = 0;
+	ch->ptype() = PT_XFXVanets;
+	ch->size() = IP_HDR_LEN + rh->size();
+	ch->iface() = -2;
+	ch->error() = 0;
+	ch->addr_type() = NS_AF_NONE;
+	ch->prev_hop_ = index;
+
+	ih->saddr() = index;
+	ih->daddr() = ih1->daddr();
+	ih->sport() = RT_PORT;
+	ih->dport() = RT_PORT;
+	ih->ttl_ = 1;
+
+	Scheduler::instance().schedule(target_, p, 0.0);
 }
 
 /* ========================================================================= */
@@ -223,9 +268,12 @@ void XFXVanets::recvXFX(Packet *p) {
 			cout << "Verifica no buffer de mensagens, se há alguma mensagem para o nodo estático que enviou essa mensagem" << endl;
 			break;
 
+		case XFX_MSG_NORMAL:
+			cout << "Sou "<< index << " e recebi uma normal message" << endl;
+			break;
+
 		default:
 			fprintf(stderr, "Invalid XFX type (%x)\n", ah->ah_type);
-			exit(1);
 	}
 }
 
@@ -253,3 +301,7 @@ void XFXVanets::recvHelloMsg(Packet *p){
 	Packet::free(p);
 }
 
+/* ========================================================================= */
+/**
+ * Forward message.
+ */
