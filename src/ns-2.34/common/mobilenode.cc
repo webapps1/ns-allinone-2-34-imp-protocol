@@ -621,3 +621,12 @@ string MobileNode::getPositions() {
 	}
 	return out;
 }
+
+/**
+ * Remove first position of my rout
+ *
+ * @author Roger Duarte.
+ */
+void MobileNode::remove_first_object(){
+	routeNode.pop_front();
+}

@@ -74,7 +74,7 @@ $node_(1) set kind 1
 
 # Generation of movements
 $ns at 1.0 "$node_(1) setdest 5.0 5.0 0.0"
-$ns at 10.0 "$node_(0) setdest 25.0 25.0 10.0"
+$ns at 3.0 "$node_(0) setdest 25.0 25.0 10.0"
 
 #---------------------- configure node 0 and node 1
 #---------------------- node 0 as tcp and node 1 as sink
@@ -90,7 +90,7 @@ $ns at 10.0 "$node_(0) setdest 25.0 25.0 10.0"
 #$ftp01 attach-agent $tcp01
 #$ns at 1.0 "$ftp01 start"
 
-set udp0 [$ns create-connection UDP $node_(1) LossMonitor $node_(0) 0]
+set udp0 [$ns create-connection UDP $node_(0) LossMonitor $node_(1) 0]
 $udp0 set fid_ 1
 set cbr0 [$udp0 attach-app Traffic/CBR]
 $cbr0 set packetSize_ 1000   

@@ -15,6 +15,8 @@
 #include <common/mobilenode.h>
 #include <packet.h>
 
+using namespace std;
+
 class XFXVanets;
 class ListPointerMobileNode;
 
@@ -36,6 +38,18 @@ private:
 	Event intr;
 };
 
+class UpdateRouteTimerXFX: public Handler {
+public:
+	UpdateRouteTimerXFX(XFXVanets *a) : agent(a) {
+		first = true;
+	}
+	void handle(Event*);
+private:
+	XFXVanets *agent;
+	Event intr;
+	bool first;
+};
+
 // ======================================================================
 // Types of Messages
 // ======================================================================
@@ -48,6 +62,8 @@ private:
 // ======================================================================
 #define TIME_HELLO_MESSAGE 1
 #define TIME_BROADCAST_MESSAGE 1
+// os nodos móveis, devem ser mover a cada3 segundos.
+#define TIME_NODE_MOVE 6
 
 // ======================================================================
 //  XFXVanets Routing Agent : the routing protocol
@@ -56,6 +72,7 @@ private:
 class XFXVanets: public Agent {
     friend class BroadcastTimerXFX;
     friend class HelloTimerXFX;
+    friend class UpdateRouteTimerXFX;
 public:
 	XFXVanets(nsaddr_t id);
 	int command(int, const char * const *);
@@ -64,6 +81,7 @@ public:
 	void recv(Packet *, Handler*);
 	void recvXFX(Packet *);
 	void recvHelloMsg(Packet *);
+	void sendMsgStNodo(Packet *);
 
 	nsaddr_t index; // node address (identifier)
 	nsaddr_t seqno; // beacon sequence number (used only when agent is sink)
@@ -78,7 +96,9 @@ public:
 protected:
 	BroadcastTimerXFX  btimerXfx;
 	HelloTimerXFX htimerXfx;
+	UpdateRouteTimerXFX utimerXFX;
 	vanets_neighbor_table *neighbor_vehicles;
+	list<void *>bufferMsgs;
 };
 
 #endif /* VANETS_H_ */
