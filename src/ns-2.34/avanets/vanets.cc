@@ -48,7 +48,10 @@ int XFXVanets::command(int argc, const char* const * argv) {
 		}
 
 		if (strncasecmp(argv[1], "start", 5) == 0) {
-			btimerXfx.handle((Event*) 0);
+			/** chama btimerXfx.handle se for móvel */
+			if (((MobileNode *)list_mobile_nodes::instance()->get_pointer()[index])->kind == 2)
+				btimerXfx.handle((Event*) 0);
+
 			htimerXfx.handle((Event*) 0);
 			return TCL_OK;
 		}
@@ -123,7 +126,7 @@ void BroadcastTimerXFX::handle(Event*){
 
 /* ========================================================================= */
 /**
- * A cada segundo, manda uma mensagem de hello para todos os vizinhos
+ * A cada segundo, manda uma mensagem de hello para todos os vizinhos.
  */
 void HelloTimerXFX::handle(Event*) {
 	agent->sendHello();
@@ -132,7 +135,8 @@ void HelloTimerXFX::handle(Event*) {
 
 /* ========================================================================= */
 /**
- * Exclui vizinhos com TTL = 0
+ * Exclui vizinhos com TTL = 0.
+ * Só é executado por nodos móveis (carros).
  */
 void XFXVanets::id_purge(){
 	neighbor_vehicles->update_ttl();
@@ -150,7 +154,11 @@ void XFXVanets::sendHello() {
 	struct hdr_ip *ih = HDR_IP(p);
 	struct hdr_xfx_reply *rh = HDR_XFX_REPLY(p);
 
-	rh->rp_type = XFX_MSG_HELLO;
+	if (((MobileNode *)list_mobile_nodes::instance()->get_pointer()[index])->kind == 2)
+		rh->rp_type = XFX_MSG_HELLO_MOVEL;
+	else
+		rh->rp_type = XFX_MSG_HELLO_STATIC;
+
 	rh->rp_dst = index;
 	rh->rp_dst_seqno = seqno;
 	rh->rp_lifetime = 4;
@@ -185,6 +193,10 @@ void XFXVanets::recv(Packet *p, Handler *){
 		recvXFX(p);
 		return;
 	}
+
+	cout << "Recebi uma mensagem, que até o momento eu não conheço" << endl;
+	cout << "Id: " << index << endl;
+	cout << ih->saddr() << endl;
 }
 
 /* ========================================================================= */
@@ -201,8 +213,14 @@ void XFXVanets::recvXFX(Packet *p) {
 	 * Dá um destino a mensagem
 	 */
 	switch (ah->ah_type) {
-		case XFX_MSG_HELLO:
-			recvHelloMsg(p);
+		case XFX_MSG_HELLO_MOVEL:
+			/** o nodo só irá receber as mensagens de hello se for movel */
+			if (((MobileNode *)list_mobile_nodes::instance()->get_pointer()[index])->kind == 2)
+				recvHelloMsg(p);
+			break;
+
+		case XFX_MSG_HELLO_STATIC:
+			cout << "Verifica no buffer de mensagens, se há alguma mensagem para o nodo estático que enviou essa mensagem" << endl;
 			break;
 
 		default:

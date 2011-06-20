@@ -57,20 +57,23 @@ for {set i 0} {$i < $val(nn) } { incr i } {
 
 # Rota
 $ns at 1.0 "$node_(0) route 5.0 5.0 0.0 250.0 250.0 0.0"
-$ns at 1.0 "$node_(1) route 280.0 180.0 0.0 200.0 300.0 0.0"
 
 # Provide initial location of mobilenodes
+
+# Configurado como um device movel
 $node_(0) set X_ 5.0
 $node_(0) set Y_ 5.0
 $node_(0) set Z_ 0.0
+$node_(0) set kind 2
 
-$node_(1) set X_ 280
+# Configurado como device estático
+$node_(1) set X_ 280.0
 $node_(1) set Y_ 180.0
 $node_(1) set Z_ 0.0
+$node_(1) set kind 1
 
 # Generation of movements
 $ns at 10.0 "$node_(0) setdest 250.0 250.0 10.0"
-$ns at 15.0 "$node_(1) setdest 200.0 300.0 10.0"
 
 #---------------------- configure node 0 and node 1
 #---------------------- node 0 as tcp and node 1 as sink

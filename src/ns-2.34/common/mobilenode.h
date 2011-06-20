@@ -233,14 +233,6 @@ public:
 	MobileNode* nextX_;
 	MobileNode* prevX_;
 	
-
-protected:
-	/*
-	 * Last time the position of this node was updated.
-	 */
-	double position_update_time_;
-	double position_update_interval_;
-
 	/*
 	 *  The following indicate the (x,y,z) position of the node on
 	 *  the "terrain" of the simulation.
@@ -250,6 +242,15 @@ protected:
 	double Z_;
 	double speed_; // meters per second
 	double NOVO_;
+	int kind; /* define se o nodo é um device ou um carro */
+
+
+protected:
+	/*
+	 * Last time the position of this node was updated.
+	 */
+	double position_update_time_;
+	double position_update_interval_;
 
 	/*
 	 *  The following is a unit vector that specifies the

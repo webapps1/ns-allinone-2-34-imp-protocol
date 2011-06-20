@@ -47,7 +47,7 @@ struct hdr_xfx_reply {
 
 	inline int size() {
 		int sz = 0;
-		sz = 6 * sizeof(u_int32_t);
+		sz = 7 * sizeof(u_int32_t);
 		return sz;
 	}
 };

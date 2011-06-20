@@ -143,6 +143,8 @@ MobileNode::MobileNode(void) :
 	bind("Z_", &Z_);
 	bind("speed_", &speed_);
 	bind("NOVO_", &NOVO_);
+	/** Tipo do nodo, 1 para estático (device); 2 para móvel (carro) */
+	bind("kind", &kind);
 }
 
 int MobileNode::command(int argc, const char* const * argv) {
