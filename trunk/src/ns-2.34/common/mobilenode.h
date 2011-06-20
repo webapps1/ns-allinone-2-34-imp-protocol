@@ -182,6 +182,7 @@ public:
 	double propdelay(MobileNode*);
 	void start(void);
 	string getPositions();
+	void remove_first_object();
 
 	inline void getLoc(double *x, double *y, double *z) {
 		update_position();

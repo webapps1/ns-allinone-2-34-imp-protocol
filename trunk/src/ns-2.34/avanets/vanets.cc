@@ -2,7 +2,7 @@
 #include <cmu-trace.h>
 #include <energy-model.h>
 #include <common/mobilenode.h>
-
+#include <time.h>
 #include "vanets.h"
 #include "vanets_packet.h"
 
@@ -49,22 +49,14 @@ int XFXVanets::command(int argc, const char* const * argv) {
 
 		if (strncasecmp(argv[1], "start", 5) == 0) {
 			/** chama btimerXfx.handle se for móvel */
-			if (((MobileNode *)list_mobile_nodes::instance()->get_pointer()[index])->kind == 2)
+			if (((MobileNode *)list_mobile_nodes::instance()->get_pointer()[index])->kind == 2){
 				btimerXfx.handle((Event*) 0);
+				utimerXFX.handle((Event*) 0);
+			}
 
 			htimerXfx.handle((Event*) 0);
 			return TCL_OK;
 		}
-
-		// Start Beacon Timer (which sends beacon message)
-		/*if (strncasecmp(argv[1], "sink", 4) == 0) {
-			bcnTimer.handle((Event*) 0);
-
-			printf("N (%.6f): sink node is set to %d, start beaconing  \n",
-					CURRENT_TIME, index);
-
-			return TCL_OK;
-		}*/
 	} else if (argc == 3) {
 		if (strcmp(argv[1], "index") == 0) {
 			index = atoi(argv[2]);
@@ -99,7 +91,7 @@ int XFXVanets::command(int argc, const char* const * argv) {
 
 /* ========================================================================= */
 XFXVanets::XFXVanets(nsaddr_t id) :
-	Agent(PT_XFXVanets), btimerXfx(this), htimerXfx(this) {
+	Agent(PT_XFXVanets), btimerXfx(this), htimerXfx(this), utimerXFX(this) {
 	printf("XFXVanets: Routing agent is initialized for node %d \n", id);
 
 	index = id;
@@ -135,10 +127,24 @@ void HelloTimerXFX::handle(Event*) {
 
 /* ========================================================================= */
 /**
+ * A cada seis segundos, apaga uma coodenada (x,y,z) do node
+ */
+void UpdateRouteTimerXFX::handle(Event*) {
+	if (!first) {
+		MobileNode *nodo = (MobileNode *) list_mobile_nodes::instance()->get_pointer()[agent->index];
+		nodo->remove_first_object();
+	}
+
+	first = true;
+	Scheduler::instance().schedule(this, &intr, TIME_NODE_MOVE);
+}
+
+/* ========================================================================= */
+/**
  * Exclui vizinhos com TTL = 0.
  * Só é executado por nodos móveis (carros).
  */
-void XFXVanets::id_purge(){
+void XFXVanets::id_purge() {
 	neighbor_vehicles->update_ttl();
 }
 
@@ -215,33 +221,7 @@ void XFXVanets::recv(Packet *p1, Handler *){
 
 	/** aqui, validar o caminho para um determinada mensagem */
 
-	/* forward packet */
-	Packet *p = Packet::alloc();
-	struct hdr_cmn *ch = HDR_CMN(p);
-	struct hdr_ip *ih = HDR_IP(p);
-	struct hdr_xfx_reply *rh = HDR_XFX_REPLY(p);
-
-	rh->rp_type = XFX_MSG_NORMAL;
-
-	rh->rp_dst = index;
-	rh->rp_dst_seqno = seqno;
-	rh->rp_lifetime = 4;
-
-	// ch->uid() = 0;
-	ch->ptype() = PT_XFXVanets;
-	ch->size() = IP_HDR_LEN + rh->size();
-	ch->iface() = -2;
-	ch->error() = 0;
-	ch->addr_type() = NS_AF_NONE;
-	ch->prev_hop_ = index;
-
-	ih->saddr() = index;
-	ih->daddr() = ih1->daddr();
-	ih->sport() = RT_PORT;
-	ih->dport() = RT_PORT;
-	ih->ttl_ = 1;
-
-	Scheduler::instance().schedule(target_, p, 0.0);
+	bufferMsgs.push_back(p1);
 }
 
 /* ========================================================================= */
@@ -265,7 +245,7 @@ void XFXVanets::recvXFX(Packet *p) {
 			break;
 
 		case XFX_MSG_HELLO_STATIC:
-			cout << "Verifica no buffer de mensagens, se há alguma mensagem para o nodo estático que enviou essa mensagem" << endl;
+			sendMsgStNodo(p);
 			break;
 
 		case XFX_MSG_NORMAL:
@@ -297,11 +277,82 @@ void XFXVanets::recvHelloMsg(Packet *p){
 	else
 		neighbor_vehicles->insert(look);
 
+	/**
+	 * Verifica se há alguma mensagem, onde o caminho percorrido pelo novo nodo
+	 * é mais curto.
+	 */
+
 	delete look;
 	Packet::free(p);
 }
 
 /* ========================================================================= */
 /**
- * Forward message.
+ * O método abaixo é sempre utilizado quando um nodo recebe um hello de um nodo estático.
+ * Percorre o buffer e verifica se existe alguma mensagem que possa se enviada para o nodo estático.
  */
+void XFXVanets::sendMsgStNodo(Packet *p){
+	list<void *>::iterator it;
+	struct hdr_cmn *ch;
+	struct hdr_ip *ih = HDR_IP(p), *ih2;
+	struct hdr_xfx_reply *rh;
+	Packet *temp;
+
+	cout << "Static " << endl;
+	cout << "Id: " << index << endl;
+	cout << ih->saddr() << endl;
+	cout << ih->daddr() << endl;
+	cout << "Size: " << bufferMsgs.size() << endl;
+
+	for (it = bufferMsgs.begin(); it != bufferMsgs.end(); it++){
+		temp = (Packet *)*it;
+		ch = HDR_CMN(temp);
+		ih = HDR_IP(temp);
+		rh = HDR_XFX_REPLY(temp);
+
+		ih2 = HDR_IP(p);
+
+		cout << "Do pacote:" << endl;
+		cout << ih->saddr() << endl;
+		cout << ih->daddr() << endl;
+
+		/**
+		 * Verifica, se o destino do pacote do buffer, é a origem do pacote recebido
+		 * do novo estático.
+		 */
+		if (ih->daddr() == ih2->saddr()){
+			/**
+			 * Forward packet
+			 */
+			rh->rp_type = XFX_MSG_NORMAL;
+
+			ih->sport() = RT_PORT;
+			ih->dport() = RT_PORT;
+
+			// ch->uid() = 0;
+			ch->ptype() = PT_XFXVanets;
+			ch->iface() = -2;
+			ch->error() = 0;
+			ch->addr_type() = NS_AF_NONE;
+
+			ih->sport() = RT_PORT;
+			ih->dport() = RT_PORT;
+
+			if (ih->ttl_ >= 0)
+				Scheduler::instance().schedule(target_, temp, 0.0);
+			else
+				drop(p, DROP_RTR_TTL);
+
+			/**
+			 * This list doesn't work correct.
+			 * When we have one object in this list .. after an erase ... a segmentation fault is showed.
+			 * Because of this we've restarted the iterator.
+			 */
+			bufferMsgs.erase(it);
+			it = bufferMsgs.begin();
+		}
+	}
+}
+
+
+/* ========================================================================= */
