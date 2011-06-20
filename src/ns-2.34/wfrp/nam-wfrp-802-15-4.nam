@@ -1,7 +1,7 @@
 n -t 0 -s 0 -S DLABEL -l "Sink" -L ""
 n -t * -s 0  -x 60 -y 60 -Z 0 -z 3  -v circle -c green
-n -t * -s 1  -x 31.530389744569728 -y 11.260436983434687 -Z 0 -z 3  -v circle -c green
-n -t * -s 2  -x 14.164380586782649 -y 100.7445220559577 -Z 0 -z 3  -v circle -c green
+n -t * -s 1  -x 68.647671951282618 -y 81.422485206938575 -Z 0 -z 3  -v circle -c green
+n -t * -s 2  -x 107.70887301662418 -y 63.028790402705219 -Z 0 -z 3  -v circle -c green
 V -t * -v 1.0a5 -a 0
 W -t * -x 120 -y 120
 A -t * -n 1 -p 0 -o 0xffffffff -c 31 -a 1
@@ -9,6 +9,7 @@ A -t * -h 1 -m 2147483647 -s 0
 + -t 1.000000000 -s 0 -d -1 -p WFRP -e 52 -c 2 -a 0 -i 0 -k RTR 
 - -t 1.000000000 -s 0 -d -1 -p WFRP -e 52 -c 2 -a 0 -i 0 -k RTR
 h -t 1.000000000 -s 0 -d -1 -p WFRP -e 52 -c 2 -a 0 -i 0 -k RTR
+n -t 10.000000 -s 0 -x 60.000000 -y 60.000000 -U -0.707107 -V -0.707107 -T 49.497475
 + -t 11.000000000 -s 0 -d -1 -p WFRP -e 52 -c 2 -a 0 -i 0 -k RTR 
 - -t 11.000000000 -s 0 -d -1 -p WFRP -e 52 -c 2 -a 0 -i 0 -k RTR
 h -t 11.000000000 -s 0 -d -1 -p WFRP -e 52 -c 2 -a 0 -i 0 -k RTR

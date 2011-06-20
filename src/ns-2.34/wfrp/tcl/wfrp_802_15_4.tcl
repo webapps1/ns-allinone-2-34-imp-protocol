@@ -19,6 +19,7 @@ set ns        		[new Simulator]
 set tracefd       	[open trace-wfrp-802-15-4.tr w]
 set namtrace      	[open nam-wfrp-802-15-4.nam w]
 
+
 $ns trace-all $tracefd
 $ns namtrace-all-wireless $namtrace $val(x) $val(y)
 
@@ -107,6 +108,8 @@ proc stop {} {
     $ns flush-trace
     close $tracefd
     close $namtrace
+    exec nam simwrls.nam &
+    exit 0
 }
 
 $ns run

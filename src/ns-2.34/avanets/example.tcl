@@ -11,7 +11,7 @@ set val(ll)             LL                         ;# link layer type
 set val(ant)            Antenna/OmniAntenna        ;# antenna model
 set val(ifqlen)         50                         ;# max packet in ifq
 set val(nn)             2                          ;# number of mobilenodes
-set val(rp)             XFXVanets                       ;# routing protocol
+set val(rp)             XFXVanets                  ;# routing protocol
 set val(x)              500   			   ;# X dimension of topography
 set val(y)              400   			   ;# Y dimension of topography
 set val(stop)		100			   ;# time of simulation end
@@ -56,7 +56,7 @@ for {set i 0} {$i < $val(nn) } { incr i } {
 }
 
 # Rota
-$ns at 1.0 "$node_(0) route 5.0 5.0 0.0 250.0 250.0 0.0"
+$ns at 1.0 "$node_(0) route 5.0 5.0 0.0 25.0 25.0 0.0"
 
 # Provide initial location of mobilenodes
 
@@ -67,27 +67,36 @@ $node_(0) set Z_ 0.0
 $node_(0) set kind 2
 
 # Configurado como device estático
-$node_(1) set X_ 280.0
-$node_(1) set Y_ 180.0
+$node_(1) set X_ 5.0
+$node_(1) set Y_ 5.0
 $node_(1) set Z_ 0.0
 $node_(1) set kind 1
 
 # Generation of movements
-$ns at 10.0 "$node_(0) setdest 250.0 250.0 10.0"
+$ns at 1.0 "$node_(1) setdest 5.0 5.0 0.0"
+$ns at 10.0 "$node_(0) setdest 25.0 25.0 10.0"
 
 #---------------------- configure node 0 and node 1
 #---------------------- node 0 as tcp and node 1 as sink
-set tcp01 [new Agent/TCP/Newreno]
-$ns attach-agent $node_(0) $tcp01
+#set tcp01 [new Agent/TCP/Newreno]
+#$ns attach-agent $node_(0) $tcp01
 
-set sink01 [new Agent/TCPSink]
-$ns attach-agent $node_(1) $sink01
+#set sink01 [new Agent/TCPSink]
+#$ns attach-agent $node_(1) $sink01
 
-$ns connect $tcp01 $sink01
+#$ns connect $tcp01 $sink01
 
-set ftp01 [new Application/FTP]
-$ftp01 attach-agent $tcp01
-$ns at 1.0 "$ftp01 start"
+#set ftp01 [new Application/FTP]
+#$ftp01 attach-agent $tcp01
+#$ns at 1.0 "$ftp01 start"
+
+set udp0 [$ns create-connection UDP $node_(1) LossMonitor $node_(0) 0]
+$udp0 set fid_ 1
+set cbr0 [$udp0 attach-app Traffic/CBR]
+$cbr0 set packetSize_ 1000   
+$cbr0 set interval_ 1.0
+$ns at 0.0 "$cbr0 start"
+$ns at 98.0 "$cbr0 stop"
 
 # Printing the window size
 
