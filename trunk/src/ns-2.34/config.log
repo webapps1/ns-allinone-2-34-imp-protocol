@@ -780,7 +780,7 @@ configure:9201: $? = 0
 configure:9223: result: yes
 configure:9138: checking for fesetprecision
 configure:9194: gcc -o conftest -g -O2   conftest.c -lm  >&5
-/tmp/cc15GHHZ.o: In function `main':
+/tmp/ccmrdvQd.o: In function `main':
 /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/ns-2.34/conftest.c:82: undefined reference to `fesetprecision'
 collect2: ld returned 1 exit status
 configure:9201: $? = 1
@@ -1839,7 +1839,7 @@ configure:12023: $? = 0
 configure:12033: result: found
 configure:12053: checking for addr2ascii
 configure:12109: gcc -o conftest -g -O2   -Wl,-export-dynamic conftest.c -lm  >&5
-/tmp/cci58IrW.o: In function `main':
+/tmp/ccDn1tUR.o: In function `main':
 /home/roger/universidade/7semestre/redesmoveis/trab1/ns-allinone-2.34/ns-2.34/conftest.c:93: undefined reference to `addr2ascii'
 collect2: ld returned 1 exit status
 configure:12116: $? = 1

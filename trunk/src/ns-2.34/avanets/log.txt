@@ -1,0 +1,1064 @@
+num_nodes is set 3
+XFXVanets: Routing agent is initialized for node 0 
+XFXVanets: Routing agent is initialized for node 1 
+NumNodes: 1
+XFXVanets: Routing agent is initialized for node 2 
+NumNodes: 2
+Id: 0
+0
+1
+channel.cc:sendUp - Calc highestAntennaZ_ and distCST_
+highestAntennaZ_ = 1.5,  distCST_ = 34.7
+===
+setdest
+set destination - mobilenode.cc
+x: 250.000000; y: 250.000000; s: 10.000000
+===
+setdest
+set destination - mobilenode.cc
+x: 5.000000; y: 5.000000; s: 10.000000
+===
+setdest
+set destination - mobilenode.cc
+x: 50.000000; y: 50.000000; s: 10.000000
+Id: 0
+0
+1
+Id: 0
+0
+1
+===
+setdest
+set destination - mobilenode.cc
+x: 25.000000; y: 50.000000; s: 10.000000
+===
+setdest
+set destination - mobilenode.cc
+x: 25.000000; y: 45.000000; s: 10.000000
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+===
+setdest
+set destination - mobilenode.cc
+x: 15.000000; y: 15.000000; s: 10.000000
+===
+setdest
+set destination - mobilenode.cc
+x: 250.000000; y: 250.000000; s: 10.000000
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+===
+setdest
+set destination - mobilenode.cc
+x: 250.000000; y: 250.000000; s: 10.000000
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 42
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 2
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 2
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 2
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 2
+Mensagem enviada: 0 ; 1 
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Id: 0
+0
+1
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 1
+Mensagem enviada: 0 ; 1 
+Sou 1 e recebi uma normal message
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 0
+Static 
+Id: 2
+1
+-1
+Size: 0
+Static 
+Id: 0
+1
+-1
+Size: 0

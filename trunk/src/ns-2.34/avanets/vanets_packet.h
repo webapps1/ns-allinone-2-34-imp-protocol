@@ -18,6 +18,7 @@
  */
 #define HDR_XFX(p)		((struct hdr_xfx*)hdr_xfx::access(p))
 #define HDR_XFX_REPLY(p)	((struct hdr_xfx_reply*)hdr_xfx::access(p))
+#define HDR_XFX_FORWARD(p)	((struct hdr_xfx_forward*)hdr_xfx::access(p))
 
 /**
  * General XFX Header
@@ -48,6 +49,23 @@ struct hdr_xfx_reply {
 	inline int size() {
 		int sz = 0;
 		sz = 7 * sizeof(u_int32_t);
+		return sz;
+	}
+};
+
+struct hdr_xfx_forward {
+	u_int8_t rp_type; // tipo do pacote
+	u_int8_t reserved[2];
+	nsaddr_t rp_dst; // ip de destino
+	u_int32_t rp_dst_seqno; // Destination Sequence Number
+	nsaddr_t rp_src; // ip de origem
+	double rp_lifetime; // Lifetime
+	double rp_timestamp; // when corresponding REQ sent;
+	Packet data;
+
+	inline int size() {
+		int sz = 0;
+		sz = 7 * sizeof(u_int32_t) + sizeof(Packet);
 		return sz;
 	}
 };

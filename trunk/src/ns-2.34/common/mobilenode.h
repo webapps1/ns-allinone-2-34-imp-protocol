@@ -129,7 +129,7 @@ public:
 		x = "";
 		int size = strlen(t);
 
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size && t[i] != '.'; i++)
 			x += t[i];
 	}
 
@@ -137,7 +137,7 @@ public:
 		y = "";
 		int size = strlen(t);
 
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size && t[i] != '.'; i++)
 			y += t[i];
 	}
 
@@ -145,7 +145,7 @@ public:
 		z = "";
 		int size = strlen(t);
 
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size && t[i] != '.'; i++)
 			z += t[i];
 	}
 
@@ -155,6 +155,18 @@ public:
 		out += "(" + x + ", " + y + " ," + z + ")";
 
 		return out;
+	}
+
+	string getx(){
+		return x;
+	}
+
+	string gety(){
+		return y;
+	}
+
+	string getz(){
+		return z;
 	}
 };
 
@@ -224,7 +236,9 @@ public:
 	inline double radius() { return radius_; }
 	inline double getUpdateTime() { return position_update_time_; }
 	//inline double last_routingtime() { return last_rt_time_;}
-
+	int check_distance(string x, string y, string z);
+	int check_distance(double x, double y, double z);
+	bool firstWalk;
 	void update_position();
 	void log_energy(int);
 	//void logrttime(double);

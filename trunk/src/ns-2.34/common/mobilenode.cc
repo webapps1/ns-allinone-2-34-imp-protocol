@@ -62,6 +62,7 @@
 #include "wired-phy.h"
 #include "god.h"
 
+#include <sstream>
 #include <avanets/list_mobile_nodes.h>
 
 // XXX Must supply the first parameter in the macro otherwise msvc
@@ -137,6 +138,7 @@ MobileNode::MobileNode(void) :
 	LIST_INIT(&ifhead_); // interface list
 
 	list_mobile_nodes::instance()->add((void *)this);
+	firstWalk = true;
 
 	bind("X_", &X_);
 	bind("Y_", &Y_);
@@ -289,6 +291,9 @@ int MobileNode::command(int argc, const char* const * argv) {
 			if (set_destination(atof(argv[2]), atof(argv[3]), atof(argv[4]))
 					< 0)
 				return TCL_ERROR;
+
+			if (kind == 2)
+				remove_first_object();
 			return TCL_OK;
 		}
 
@@ -628,5 +633,41 @@ string MobileNode::getPositions() {
  * @author Roger Duarte.
  */
 void MobileNode::remove_first_object(){
-	routeNode.pop_front();
+	if (firstWalk == false)
+		routeNode.pop_front();
+
+	firstWalk = false;
+}
+
+/**
+ * Verifica qual é a distância, entre o nodo atual e as coordenadas passadas
+ * como parâmetro.
+ */
+int MobileNode::check_distance(string x, string y, string z){
+	int distance = 0;
+
+	for (list<CarRoute>::iterator it = routeNode.begin(); it != routeNode.end(); it++) {
+		if (!it->gety().compare(y) && !it->getx().compare(x))
+			return distance;
+
+		distance++;
+	}
+
+	return -1;
+}
+
+int MobileNode::check_distance(double x, double y, double z){
+	std::ostringstream sstreamX, sstreamY, sstreamZ;
+	string sX, sY, sZ;
+
+	sstreamX << x;
+	sX = sstreamX.str();
+
+	sstreamY << y;
+	sY = sstreamY.str();
+
+	sstreamZ << z;
+	sZ = sstreamZ.str();
+
+	return check_distance(sX, sY, sZ);
 }
