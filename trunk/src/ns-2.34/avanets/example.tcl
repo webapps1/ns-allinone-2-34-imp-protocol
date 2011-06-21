@@ -172,9 +172,9 @@ proc stop {} {
     global ns tracefd namtrace
     $ns flush-trace
     close $tracefd
-    close $namtrace
+    #close $namtrace
     #Execute nam on the trace file
-    exec nam simwrls.nam &
+    #exec nam simwrls.nam &
     exit 0
 }
 

@@ -2,8 +2,8 @@ set grid
 set  xlabel "X - Numero de Mensagens"
 set  ylabel "Y - Pacotes Entregues (%)"
 set title "Grafico Taxas de Entrega"
-set yrange [0:10000]
-set xrange [0:10000]
+#set yrange [0:10000]
+#set xrange [0:10000]
 set terminal gif large size 850,650
 set output "gr_taxa.gif"
 plot "entrega.data" t"Taxa de entrega" with lines 2
