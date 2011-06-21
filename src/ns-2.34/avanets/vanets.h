@@ -38,24 +38,13 @@ private:
 	Event intr;
 };
 
-class UpdateRouteTimerXFX: public Handler {
-public:
-	UpdateRouteTimerXFX(XFXVanets *a) : agent(a) {
-		first = true;
-	}
-	void handle(Event*);
-private:
-	XFXVanets *agent;
-	Event intr;
-	bool first;
-};
-
 // ======================================================================
 // Types of Messages
 // ======================================================================
 #define XFX_MSG_HELLO_MOVEL 0x1
 #define XFX_MSG_HELLO_STATIC 0x2
 #define XFX_MSG_NORMAL 0x3
+#define XFX_MSG_FORWARD 0x4
 
 // ======================================================================
 //  Timers (Broadcast ID, Hello)
@@ -72,7 +61,6 @@ private:
 class XFXVanets: public Agent {
     friend class BroadcastTimerXFX;
     friend class HelloTimerXFX;
-    friend class UpdateRouteTimerXFX;
 public:
 	XFXVanets(nsaddr_t id);
 	int command(int, const char * const *);
@@ -82,6 +70,9 @@ public:
 	void recvXFX(Packet *);
 	void recvHelloMsg(Packet *);
 	void sendMsgStNodo(Packet *);
+	void sendMsgMinorDistance(nsaddr_t);
+	void forward(nsaddr_t, Packet *);
+	void handleForward(Packet *);
 
 	nsaddr_t index; // node address (identifier)
 	nsaddr_t seqno; // beacon sequence number (used only when agent is sink)
@@ -96,7 +87,6 @@ public:
 protected:
 	BroadcastTimerXFX  btimerXfx;
 	HelloTimerXFX htimerXfx;
-	UpdateRouteTimerXFX utimerXFX;
 	vanets_neighbor_table *neighbor_vehicles;
 	list<void *>bufferMsgs;
 };
