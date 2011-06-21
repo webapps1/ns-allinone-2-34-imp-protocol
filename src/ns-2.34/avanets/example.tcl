@@ -10,7 +10,7 @@ set val(ifq)            Queue/DropTail/PriQueue    ;# interface queue type
 set val(ll)             LL                         ;# link layer type
 set val(ant)            Antenna/OmniAntenna        ;# antenna model
 set val(ifqlen)         50                         ;# max packet in ifq
-set val(nn)             3                          ;# number of mobilenodes
+set val(nn)             7                          ;# number of mobilenodes
 set val(rp)             XFXVanets                  ;# routing protocol
 set val(x)              500   			   ;# X dimension of topography
 set val(y)              400   			   ;# Y dimension of topography
@@ -61,17 +61,31 @@ for {set i 0} {$i < $val(nn) } { incr i } {
     set node_($i) [$ns node]
 }
 
+# 0, 1, 4 como devices.
+# 2, 3, 5, 6, como carros.
+
 # Rota
-$ns at 0.0 "$node_(0) route 5.0 5.0 0.0 25.0 50.0 0.0 15.0 15.0 0.0 250.0 250.0 0.0"
-$ns at 0.0 "$node_(2) route 5.0 5.0 0.0 50.0 50.0 0.0 250.0 250.0 0.0 "
+$ns at 0.0 "$node_(2) route 5.0 5.0 10.0 25.0 25.0 10.0 150.0 150.10 250.0 250.0 10.0"
+$ns at 0.0 "$node_(3) route 250.0 250.0 10.0 150.0 150.0 10.0 180.0 180.0 10.0 5.0 5.0 10.0"
 
-# Provide initial location of mobilenodes
+$ns at 0.0 "$node_(5) route 180.0 180.0 10.0 160.0 160.0 10.0 250.0 250.0 10.0 5.0 5.0 10.0"
+$ns at 0.0 "$node_(6) route 5.0 5.0 10.0 150.0 150.0 10.0 250.0 250.0 10.0 150.0 150.0 10.0"
 
-# Configurado como um device movel
-$node_(0) set X_ 5.0
-$node_(0) set Y_ 5.0
+# Configuração dos devices
+$node_(0) set X_ 250.0
+$node_(0) set Y_ 250.0
 $node_(0) set Z_ 10.0
-$node_(0) set kind 2
+$node_(0) set kind 1
+
+$node_(1) set X_ 5.0
+$node_(1) set Y_ 5.0
+$node_(1) set Z_ 10.0
+$node_(1) set kind 1
+
+$node_(4) set X_ 150.0
+$node_(4) set Y_ 150.0
+$node_(4) set Z_ 10.0
+$node_(4) set kind 1
 
 # Configurado como um device movel
 $node_(2) set X_ 5.0
@@ -79,40 +93,77 @@ $node_(2) set Y_ 5.0
 $node_(2) set Z_ 10.0
 $node_(2) set kind 2
 
-# Configurado como device estático
-$node_(1) set X_ 250.0
-$node_(1) set Y_ 250.0
-$node_(1) set Z_ 10.0
-$node_(1) set kind 1
+$node_(3) set X_ 250.0
+$node_(3) set Y_ 250.0
+$node_(3) set Z_ 10.0
+$node_(3) set kind 2
+
+$node_(5) set X_ 180.0
+$node_(5) set Y_ 180.0
+$node_(5) set Z_ 10.0
+$node_(5) set kind 1
+
+$node_(6) set X_ 5.0
+$node_(6) set Y_ 5.0
+$node_(6) set Z_ 10.0
+$node_(6) set kind 1
 
 # Generation of movements
 # devices
-$ns at 1.0 "$node_(1) setdest 250.0 250.0 10.0"
+$ns at 1.0 "$node_(0) setdest 250.0 250.0 10.0"
+$ns at 1.0 "$node_(1) setdest 5.0 5.0 10.0"
+$ns at 1.0 "$node_(4) setdest 150.0 150.0 10.0"
+
 # carros
-$ns at 1.0 "$node_(0) setdest 5.0 5.0 10.0"
 $ns at 1.0 "$node_(2) setdest 5.0 5.0 10.0"
+$ns at 1.0 "$node_(3) setdest 250.0 250.0 10.0"
+$ns at 1.0 "$node_(5) setdest 180.0 180.0 10.0"
+$ns at 1.0 "$node_(6) setdest 5.0 5.0 10.0"
 
-$ns at 3.0 "$node_(0) setdest 25.0 50.0 10.0"
-$ns at 3.0 "$node_(2) setdest 50.0 50.0 10.0"
+$ns at 6.0 "$node_(2) setdest 25.0 25.0 10.0"
+$ns at 6.0 "$node_(3) setdest 150.0 150.0 10.0"
+$ns at 6.0 "$node_(5) setdest 160.0 160.0 10.0"
+$ns at 6.0 "$node_(6) setdest 150.0 150.0 10.0"
 
-$ns at 6.0 "$node_(0) setdest 15.0 15.0 10.0"
-$ns at 6.0 "$node_(2) setdest 250.0 250.0 10.0"
+$ns at 12.0 "$node_(2) setdest 150.0 150.0 10.0"
+$ns at 12.0 "$node_(3) setdest 180.0 180.0 10.0"
+$ns at 12.0 "$node_(5) setdest 250.0 250.0 10.0"
+$ns at 12.0 "$node_(6) setdest 250.0 250.0 10.0"
 
-$ns at 9.0 "$node_(0) setdest 250.0 250.0 10.0"
+$ns at 18.0 "$node_(2) setdest 250.0 250.0 10.0"
+$ns at 18.0 "$node_(3) setdest 5.0 5.0 10.0"
+$ns at 18.0 "$node_(5) setdest 5.0 5.0 10.0"
+$ns at 18.0 "$node_(6) setdest 150.0 150.0 10.0"
 
+
+#---------------------- 2-> 0 3->1 5-> 4
 #---------------------- configure node 0 and node 1
 #---------------------- node 0 as tcp and node 1 as sink
-set udp0 [$ns create-connection UDP $node_(0) LossMonitor $node_(1) 0]
+set udp0 [$ns create-connection UDP $node_(2) LossMonitor $node_(0) 0]
 $udp0 set fid_ 1
 set cbr0 [$udp0 attach-app Traffic/CBR]
 $cbr0 set packetSize_ 1000   
 $cbr0 set interval_ 1.0
-$ns at 0.0 "$cbr0 start"
+$ns at 1.0 "$cbr0 start"
 $ns at 98.0 "$cbr0 stop"
 
-# Printing the window size
+set udp1 [$ns create-connection UDP $node_(3) LossMonitor $node_(1) 0]
+$udp1 set fid_ 1
+set cbr1 [$udp1 attach-app Traffic/CBR]
+$cbr1 set packetSize_ 1000   
+$cbr1 set interval_ 1.0
+$ns at 1.0 "$cbr1 start"
+$ns at 98.0 "$cbr1 stop"
 
-# ending nam and the simulation
+set udp2 [$ns create-connection UDP $node_(5) LossMonitor $node_(4) 0]
+$udp2 set fid_ 1
+set cbr2 [$udp2 attach-app Traffic/CBR]
+$cbr2 set packetSize_ 1000   
+$cbr2 set interval_ 1.0
+$ns at 1.0 "$cbr2 start"
+$ns at 98.0 "$cbr2 stop"
+
+
 $ns at $val(stop) "$ns nam-end-wireless $val(stop)"
 $ns at $val(stop) "stop"
 $ns at 100.0 "puts \"end simulation\" ; $ns halt"
